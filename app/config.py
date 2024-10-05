@@ -1,12 +1,13 @@
 from pydantic_settings import BaseSettings
-import os
+from dotenv import load_dotenv
 
-env_path = os.path.join(os.path.dirname(__file__), '.env')
+load_dotenv()
+
 class Settings(BaseSettings):
     mongo_db_uri: str  # MongoDB URI 필드
 
     class Config:
-        env_file = env_path
+        env_file = "../.env"
 
 # 환경 변수 불러오기
 settings = Settings()
