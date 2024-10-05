@@ -1,0 +1,191 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="a8fc31a0-2004-42ca-aabb-08c8671c6692" name="변경" comment="">
+      <change afterPath="$PROJECT_DIR$/.idea/baseballAPI.iml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/profiles_settings.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/.gitignore" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/config.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/data_upload/crawl_update_daily_data.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/data_upload/crawling_all_schedule.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/data_upload/crawling_daily_schedule.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/data_upload/crawling_team_winrate.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/data_upload/승리지쿄대사.xlsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/database_mongo.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/main.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/models/baseball_game_model.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/models/stadium_name_enum.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/routers/baseball_game_router.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/routers/stadium_namelist_router.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/routers/team_line_router.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/routers/team_winrate_router.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/schemas/baseball_game_schema.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/schemas/baseball_game_swagger_example.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/schemas/http_schema.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/schemas/stadium_namelist_schema.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/schemas/stadium_namelist_swagger_example.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/schemas/team_line_schema.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/schemas/team_line_swagger_example.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/schemas/team_winrate_schema.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/schemas/team_winrate_swagger_example.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/test/crawling.ipynb" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/test_main.http" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="FastAPI main" />
+        <option value="FastAPI test_main" />
+        <option value="Jupyter Notebook" />
+        <option value="Python Script" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 5
+}</component>
+  <component name="ProjectId" id="2mMxgPZgw7v5znxHC6NP1713HA6" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "FastAPI.baseballAPI.executor": "Run",
+    "Python.config.executor": "Run",
+    "Python.crawl_update_daily_data.executor": "Run",
+    "Python.crawling_all_schedule.executor": "Run",
+    "Python.crawling_daily_schedule.executor": "Run",
+    "Python.crawling_postseason.executor": "Run",
+    "Python.crawling_regularseason.executor": "Run",
+    "Python.crawling_regulerseason.executor": "Run",
+    "Python.crawling_team_winrate.executor": "Run",
+    "Python.crowling.executor": "Run",
+    "Python.crwal_update_daily_data.executor": "Run",
+    "Python.database_mongo.executor": "Run",
+    "Python.stadium_name.executor": "Run",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "database.data.extractors.current.export.id": "Comma-separated (CSV)_id",
+    "git-widget-placeholder": "main",
+    "last_opened_file_path": "/Users/jhon/PycharmProjects/baseballAPI/app",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "settings.editor.selected.configurable": "reference.settings.deploy.options",
+    "vue.rearranger.settings.migration": "true"
+  }
+}]]></component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/app" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/app/crawling" />
+      <recent name="$PROJECT_DIR$/app/data" />
+      <recent name="$PROJECT_DIR$/app" />
+      <recent name="$PROJECT_DIR$/app/crowling" />
+      <recent name="$PROJECT_DIR$/test" />
+    </key>
+  </component>
+  <component name="RunAnythingCache">
+    <myKeys>
+      <visibility group="Grunt" flag="true" />
+      <visibility group="Gulp" flag="true" />
+      <visibility group="HTTP 요청" flag="true" />
+      <visibility group="Node.js" flag="true" />
+      <visibility group="Python 파일 실행" flag="true" />
+      <visibility group="conda 명령어 실행" flag="true" />
+      <visibility group="npm" flag="true" />
+      <visibility group="pip 명령어 실행" flag="true" />
+      <visibility group="yarn" flag="true" />
+      <visibility group="실행 구성" flag="true" />
+      <visibility group="최근 프로젝트" flag="true" />
+    </myKeys>
+  </component>
+  <component name="RunManager">
+    <configuration name="baseballAPI" type="Python.FastAPI">
+      <option name="file" value="$PROJECT_DIR$/main.py" />
+      <module name="baseballAPI" />
+      <option name="ENV_FILES" value="" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="" />
+      <option name="IS_MODULE_SDK" value="false" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <option name="launchJavascriptDebuger" value="false" />
+      <method v="2" />
+    </configuration>
+  </component>
+  <component name="SharedIndexes">
+    <attachedChunks>
+      <set>
+        <option value="bundled-js-predefined-1d06a55b98c1-74d2a5396914-JavaScript-PY-241.14494.241" />
+        <option value="bundled-python-sdk-0509580d9d50-28c9f5db9ffe-com.jetbrains.pycharm.pro.sharedIndexes.bundled-PY-241.14494.241" />
+      </set>
+    </attachedChunks>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="애플리케이션 수준" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="디폴트 작업">
+      <changelist id="a8fc31a0-2004-42ca-aabb-08c8671c6692" name="변경" comment="" />
+      <created>1726900356361</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1726900356361</updated>
+      <workItem from="1726900357356" duration="37641000" />
+      <workItem from="1727831691259" duration="3253000" />
+      <workItem from="1727847318479" duration="46361000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+  <component name="com.intellij.coverage.CoverageDataManagerImpl">
+    <SUITE FILE_PATH="coverage/baseballAPI$crowling.coverage" NAME="crowling 커버리지 결과" MODIFIED="1727801911150" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/app" />
+    <SUITE FILE_PATH="coverage/baseballAPI$crawling_all_schedule.coverage" NAME="crawling_all_schedule 커버리지 결과" MODIFIED="1727980456918" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/app/crawling" />
+    <SUITE FILE_PATH="coverage/baseballAPI$database_mongo.coverage" NAME="database_mongo 커버리지 결과" MODIFIED="1727958348240" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/app" />
+    <SUITE FILE_PATH="coverage/baseballAPI$crawling_regulerseason.coverage" NAME="crawling_regulerseason 커버리지 결과" MODIFIED="1727882068673" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/app/crawling" />
+    <SUITE FILE_PATH="coverage/baseballAPI$stadium_name.coverage" NAME="stadium_name 커버리지 결과" MODIFIED="1728124310399" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/app/models" />
+    <SUITE FILE_PATH="coverage/baseballAPI$crawl_update_daily_data.coverage" NAME="crawl_update_daily_data 커버리지 결과" MODIFIED="1728139412660" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/app/data_upload" />
+    <SUITE FILE_PATH="coverage/baseballAPI$crawling_daily_schedule.coverage" NAME="crawling_daily_schedule 커버리지 결과" MODIFIED="1727978069262" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/app/crawling" />
+    <SUITE FILE_PATH="coverage/baseballAPI$config.coverage" NAME="config 커버리지 결과" MODIFIED="1727958352176" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/app" />
+    <SUITE FILE_PATH="coverage/baseballAPI$crwal_update_daily_data.coverage" NAME="crwal_update_daily_data 커버리지 결과" MODIFIED="1727980259435" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/app/crawling" />
+    <SUITE FILE_PATH="coverage/baseballAPI$crawling_team_winrate.coverage" NAME="crawling_team_winrate 커버리지 결과" MODIFIED="1727974897727" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/app/crawling" />
+    <SUITE FILE_PATH="coverage/baseballAPI$crawling_regularseason.coverage" NAME="crawling_regularseason 커버리지 결과" MODIFIED="1727883804434" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/app/crawling" />
+    <SUITE FILE_PATH="coverage/baseballAPI$crawling_postseason.coverage" NAME="crawling_postseason 커버리지 결과" MODIFIED="1727883440796" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/app/crawling" />
+  </component>
+</project>
