@@ -1,6 +1,7 @@
 from fastapi import FastAPI
 from app.routers import baseball_game_router, team_line_router, team_winrate_router, stadium_namelist_router
 
+
 app = FastAPI(
     description= "승리지쿄 API입니다!",
     title= "야놀자 백엔드"
