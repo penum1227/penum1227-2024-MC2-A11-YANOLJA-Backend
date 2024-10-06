@@ -6,15 +6,16 @@ from selenium.common.exceptions import TimeoutException
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.support.ui import Select
 from app.database_mongo import db
+from app.config import settings
+from update_google_sheets_to_mongodb import update_sheet_to_mongodb
 import schedule
 import time
-import pandas as pd
-
 
 collection = db['kbo_all_schedule']
-new_collection = db['kbo_team_winrate']  # 새로운 컬렉션 설정
-excel_collection = db['team_line']
-file_path = '승리지쿄대사.xlsx'
+new_collection = db['kbo_team_winrate']
+team_line_collection = db['team_line']
+keep_notice_comment_collection = db['keep_notice_comment']
+kbo_stadium_data_collection = db['kbo_stadium_data']
 
 # 현재 달의 데이터를 삭제하는 함수
 def delete_current_month_data():
@@ -210,32 +211,29 @@ def crawl_kbo_team_winrate():
 
     finally:
         driver.quit()
-# 엑셀 파일 데이터를 처리하는 함수
-def process_excel_file():
-    """
-    엑셀 파일을 읽어와 'date' 열을 추가하고 데이터를 MongoDB에 저장하는 함수.
-    과거 데이터를 삭제하고 새 데이터를 저장.
-    """
-    df = pd.read_excel(file_path)
-    # 현재 날짜를 "yyyy-mm-dd" 형태로 저장
-    current_date = datetime.now().strftime("%Y-%m-%d")
-    # 'date' 열 추가
-    df['date'] = current_date
-    # MongoDB에 저장하기 전에 과거 데이터를 삭제 (현재 날짜보다 이전 날짜의 모든 데이터 삭제)
-    excel_collection.delete_many({})
-    # MongoDB에 저장
-    if not df.empty:
-        data_dict = df.to_dict("records")
-        excel_collection.insert_many(data_dict)
-        print(f"팀별 대사 데이터를 {current_date}에 MongoDB에 저장했습니다.")
-    else:
-        print("팀별 대사 데이터가 없습니다.")
+
+
+
+# 기존 시트 데이터 업로드하는 메인 함수
+def google_sheet_upload():
+    sheet_id = settings.google_sheet_id
+
+    # 시트 1 -> team_line 컬렉션에 저장
+    update_sheet_to_mongodb(sheet_id, "시트1", "team_line")
+
+    # 시트 2 -> kbo_stadium_data 컬렉션에 저장
+    update_sheet_to_mongodb(sheet_id, "시트2", "kbo_stadium_data")
+
+    # 시트 3 -> keep_notice_comment 컬렉션에 저장
+    update_sheet_to_mongodb(sheet_id, "시트3", "keep_notice_comment")
+
 
 # 모든 데이터를 업데이트하는 함수
 def update_all_data():
     now = datetime.now()
     current_year = now.year
     current_month = now.strftime("%m")
+
     # 1. 현재 월의 정규 시즌 및 포스트 시즌 데이터 업데이트
     delete_current_month_data()
     print(f"{current_year}년 {current_month}월 정규 시즌 데이터를 수집합니다.")
@@ -245,23 +243,28 @@ def update_all_data():
     print(f"{current_year}년 {current_month}월 포스트 시즌 데이터를 수집합니다.")
     schedule_data = crawl_kbo_schedule(str(current_year), current_month, "postseason")
     save_to_mongodb(schedule_data)
+
     # 2. 팀별 승률 데이터 업데이트
     crawl_kbo_team_winrate()
-    # 3. 대사 업데이트
-    process_excel_file()
+
+    # 3. 시트 1, 2, 3 데이터를 업데이트
+    google_sheet_upload()
 
 
-# 매일 22시에 모든 데이터를 업데이트하도록 설정
-#schedule.every().day.at("17:00").do(update_all_data)
-#schedule.every().day.at("17:00").do(update_all_data)
-#schedule.every().day.at("17:00").do(update_all_data)
-#schedule.every().day.at("20:00").do(update_all_data)
-#schedule.every().day.at("20:00").do(update_all_data)
-#schedule.every().day.at("20:00").do(update_all_data)
-#schedule.every().day.at("22:00").do(update_all_data)
-#schedule.every().day.at("22:00").do(update_all_data)
-#schedule.every().day.at("22:00").do(update_all_data)
-schedule.every(1).minutes.do(update_all_data)
+# 스케줄 설정 (설정한 시간대마다 update_all_data 실행)
+# schedule.every().day.at("14:00").do(update_all_data)
+# schedule.every().day.at("17:00").do(update_all_data)
+# schedule.every().day.at("17:15").do(update_all_data)
+# schedule.every().day.at("17:30").do(update_all_data)
+# schedule.every().day.at("18:00").do(update_all_data)
+# schedule.every().day.at("18:30").do(update_all_data)
+# schedule.every().day.at("21:15").do(update_all_data)
+# schedule.every().day.at("21:30").do(update_all_data)
+# schedule.every().day.at("21:45").do(update_all_data)
+# schedule.every().day.at("22:10").do(update_all_data)
+
+# 실험용 1분마다 실행 (원하는 경우)
+schedule.every(2).minutes.do(update_all_data)
 
 # 스케줄러가 실행되도록 루프
 while True:

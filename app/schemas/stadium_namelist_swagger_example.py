@@ -21,4 +21,14 @@ BaseballStadiumResponseExample = {
         }
     }
 }
-
+# 500 서버 오류에 대한 예시
+ErrorResponseExample_500 = {
+    "application/json": {
+        "example": {
+            "isSuccess": False,
+            "code": "500",
+            "message": "서버 오류로 인해 야구장 목록을 가져오지 못했습니다.",
+            "result": []
+        }
+    }
+}

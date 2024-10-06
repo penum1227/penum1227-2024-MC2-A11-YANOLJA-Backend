@@ -10,7 +10,6 @@ from app.schemas.baseball_game_swagger_example import (
     ErrorResponseExample_404,
     ErrorResponseExample_422
 )
-from app.models.stadium_name_enum import BaseballStadium
 from datetime import datetime
 from typing import List
 
@@ -33,12 +32,17 @@ def get_game_result(my_team: str, team1: str, team1_score: str, team2_score: str
         else:
             return "2"  # 무승부
 
-# 경기장을 열거형으로부터 가져오는 함수
-def get_stadium_name(stadium_key: str) -> str:
+# 경기장을 kbo_stadium_data 컬렉션에서 가져오는 함수
+async def get_stadium_name_from_db(stadium_key: str):
     try:
-        return BaseballStadium[stadium_key].value
-    except KeyError:
-        return stadium_key  # 열거형에 없을 경우 그대로 반환
+        # kbo_stadium_data 컬렉션에서 location이 stadium_key와 일치하는 문서를 찾음
+        stadium_data = await db.kbo_stadium_data.find_one({"location": stadium_key})
+        if stadium_data:
+            return stadium_data['stadium_name']  # 경기장 이름 반환
+        else:
+            return stadium_key  # 데이터가 없을 경우 원래 경기장 키 반환
+    except Exception as e:
+        return stadium_key  # 오류 발생 시 원래 키 반환
 
 # POST 요청을 처리하는 라우터 정의
 @router.post("/baseballGame", response_model=Response,
@@ -135,8 +139,8 @@ async def baseball_game(request: BaseBallGameRequest):
         # 경기 결과 결정
         result = get_game_result(request.myTeam, game['team1'], game['team1_score'], game['team2_score'])
 
-        # 경기장 이름을 열거형에서 가져오거나 원래 이름을 사용
-        stadium_name = get_stadium_name(game['stadium'])
+        # 경기장 이름을 kbo_stadium_data 컬렉션에서 가져옴
+        stadium_name = await get_stadium_name_from_db(game['stadium'])
 
         # 응답 데이터 구성
         response_data = BaseBallGameResponse(
