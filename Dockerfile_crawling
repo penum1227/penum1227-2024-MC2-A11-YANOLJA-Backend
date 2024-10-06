@@ -15,12 +15,17 @@ RUN wget -q -O - https://dl.google.com/linux/linux_signing_key.pub | gpg --dearm
     && apt-get install -y google-chrome-stable \
     && apt-get clean
 
-# Chrome 실행 경로를 /usr/bin/google-chrome 으로 설정
-ENV CHROME_BIN=/usr/bin/google-chrome
-ENV CHROME_DRIVER=/usr/local/bin/chromedriver
+# Chrome 및 ChromeDriver 실행 경로를 권한이 더 자유로운 경로로 설정
+RUN mkdir -p /opt/google/chrome \
+    && cp /usr/bin/google-chrome /opt/google/chrome/google-chrome \
+    && chmod -R 755 /opt/google/chrome
+
+# ENV 변수 수정 (새로운 경로 사용)
+ENV CHROME_BIN=/opt/google/chrome/google-chrome
+ENV CHROME_DRIVER=/opt/google/chrome/chromedriver
 
 # ChromeDriver 설치 (Chrome의 Major 버전과 일치)
-RUN CHROME_VERSION=$(google-chrome --version | cut -d ' ' -f 3) \
+RUN CHROME_VERSION=$($CHROME_BIN --version | cut -d ' ' -f 3) \
     && DRIVER_URL=$(curl -sS https://googlechromelabs.github.io/chrome-for-testing/known-good-versions-with-downloads.json \
         | jq -r --arg version "$CHROME_VERSION" '.versions[] | select(.version==$version) | .downloads.chromedriver[] | select(.platform=="linux64").url') \
     && if [ -z "$DRIVER_URL" ]; then \
@@ -29,21 +34,19 @@ RUN CHROME_VERSION=$(google-chrome --version | cut -d ' ' -f 3) \
     fi \
     && wget -O /tmp/chromedriver.zip "$DRIVER_URL" \
     && unzip /tmp/chromedriver.zip -d /tmp/ \
-    && mv /tmp/chromedriver-linux64/chromedriver /usr/local/bin/chromedriver \
-    && chmod +x /usr/local/bin/chromedriver \
+    && mv /tmp/chromedriver-linux64/chromedriver /opt/google/chrome/chromedriver \
+    && chmod +x /opt/google/chrome/chromedriver \
     && rm -rf /tmp/chromedriver-linux64 \
     && rm /tmp/chromedriver.zip
 
-# 권한 설정
-RUN chmod -R 755 /usr/local/bin/chromedriver && chmod -R 755 /usr/bin/google-chrome
-
+# 권한 설정 (Chrome 및 ChromeDriver 경로에 대해)
+RUN chmod -R 755 /opt/google/chrome/google-chrome && chmod -R 755 /opt/google/chrome/chromedriver
 
 # Python 종속성 설치
 COPY requirements.txt .
 RUN pip install --no-cache-dir -r requirements.txt
 
-
-#PYTHONPATH 설정
+# PYTHONPATH 설정
 ENV PYTHONPATH=/app
 
 # 작업 디렉토리 설정
