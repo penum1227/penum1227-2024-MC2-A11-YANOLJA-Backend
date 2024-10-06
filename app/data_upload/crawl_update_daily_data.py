@@ -39,9 +39,9 @@ def get_chrome_driver():
     chrome_options.add_argument("--disable-setuid-sandbox")
 
     # 상대 경로로 설정 (예: /app/bin/chromedriver)
-    driver_path = os.path.join(os.path.dirname(__file__), 'bin', 'chromedriver')
+    #driver_path = os.path.join(os.path.dirname(__file__), 'bin', 'chromedriver')
 
-    return webdriver.Chrome(executable_path=driver_path, options=chrome_options)
+    return webdriver.Chrome(options=chrome_options)
 
 
 
@@ -293,8 +293,10 @@ def update_all_data():
 # 스케줄 설정 및 실행 함수
 def run_scheduler():
     # 스케줄을 매일 특정 시간에 설정
-    schedule.every().day.at("02:00").do(update_all_data)
-    schedule.every().day.at("14:00").do(update_all_data)
+    schedule.every(1).minutes.do(update_all_data)
+    #schedule.every().day.at("02:00").do(update_all_data)
+    #schedule.every().day.at("14:00").do(update_all_data)
+
 
     while True:
         try:
