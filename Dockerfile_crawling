@@ -15,8 +15,11 @@ RUN wget -q -O - https://dl.google.com/linux/linux_signing_key.pub | gpg --dearm
     && apt-get clean
 
 # ChromeDriver 설치 (Chrome의 Major 버전과 일치)
-RUN CHROME_VERSION=$(google-chrome --version | grep -oP '\d+\.\d+') \
+RUN set -e \
+    && CHROME_VERSION=$(google-chrome --version | grep -oP '\d+\.\d+') \
+    && echo "Chrome version: $CHROME_VERSION" \
     && DRIVER_VERSION=$(curl -sS https://chromedriver.storage.googleapis.com/LATEST_RELEASE_$CHROME_VERSION) \
+    && echo "Driver version: $DRIVER_VERSION" \
     && wget -O /tmp/chromedriver.zip https://chromedriver.storage.googleapis.com/$DRIVER_VERSION/chromedriver_linux64.zip \
     && unzip /tmp/chromedriver.zip -d /usr/local/bin/ \
     && rm /tmp/chromedriver.zip
@@ -37,5 +40,6 @@ ENV PYTHONPATH=/app
 
 # 프로젝트 파일 복사
 COPY . .
+
 # 스크립트 실행
 CMD ["python3", "/app/app/data_upload/crawl_update_daily_data.py"]
