@@ -9,6 +9,7 @@ from selenium.webdriver.support.ui import Select
 from app.database_mongo import db
 from app.config import settings
 from update_google_sheets_to_mongodb import update_sheet_to_mongodb
+from selenium.webdriver.chrome.service import Service
 import os
 import schedule
 import time
@@ -26,6 +27,8 @@ logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)
 
 
+
+
 def get_chrome_driver():
     chrome_options = webdriver.ChromeOptions()
 
@@ -38,10 +41,10 @@ def get_chrome_driver():
     chrome_options.add_argument("--disable-software-rasterizer")
     chrome_options.add_argument("--disable-setuid-sandbox")
 
-    # 상대 경로로 설정 (예: /app/bin/chromedriver)
-    #driver_path = os.path.join(os.path.dirname(__file__), 'bin', 'chromedriver')
+    service = Service("/usr/local/bin/chromedriver", service_args=["--verbose", "--log-path=/tmp/chromedriver.log"])
 
-    return webdriver.Chrome(options=chrome_options)
+    return webdriver.Chrome(service=service, options=chrome_options)
+
 
 
 
