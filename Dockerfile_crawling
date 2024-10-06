@@ -15,11 +15,11 @@ RUN wget -q -O - https://dl.google.com/linux/linux_signing_key.pub | gpg --dearm
     && apt-get install -y google-chrome-stable \
     && apt-get clean
 
-# Chrome 실행 경로를 /opt/google/chrome/google-chrome 으로 설정
-ENV CHROME_BIN=/opt/google/chrome/opt/google/chrome/google-chrome
-ENV CHROME_DRIVER=/opt/chrome/chromedriver
+# Chrome 실행 경로를 /usr/bin/google-chrome 으로 설정
+ENV CHROME_BIN=/usr/bin/google-chrome
+ENV CHROME_DRIVER=/usr/local/bin/chromedriver
 
-# 디버깅을 위한 set -x 활성화
+# ChromeDriver 설치 (Chrome의 Major 버전과 일치)
 RUN set -x \
     && CHROME_VERSION=$($CHROME_BIN --version | cut -d ' ' -f 3) \
     && echo "Using Chrome version: $CHROME_VERSION" \
@@ -31,12 +31,14 @@ RUN set -x \
     fi \
     && echo "Downloading ChromeDriver from: $DRIVER_URL" \
     && wget -O /tmp/chromedriver.zip "$DRIVER_URL" \
-    && unzip /tmp/chromedriver.zip -d /opt/chrome/ \
-    && chmod +x /opt/chrome/chromedriver \
+    && unzip /tmp/chromedriver.zip -d /tmp/ \
+    && mv /tmp/chromedriver-linux64/chromedriver /usr/local/bin/chromedriver \
+    && chmod +x /usr/local/bin/chromedriver \
+    && rm -rf /tmp/chromedriver-linux64 \
     && rm /tmp/chromedriver.zip
 
 # 권한 설정
-RUN chmod -R 755 /opt/chrome/chromedriver && chmod -R 755 /opt/google/chrome
+RUN chmod -R 755 /usr/local/bin/chromedriver && chmod -R 755 /usr/bin/google-chrome
 
 # Python 종속성 설치
 COPY requirements.txt .
