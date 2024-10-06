@@ -11,10 +11,13 @@ RUN apt-get update && apt-get install -y wget gnupg2 unzip \
     && apt-get update && apt-get install -y google-chrome-stable \
     && apt-get clean
 
-# ChromeDriver 설치
-RUN wget -O /tmp/chromedriver.zip https://chromedriver.storage.googleapis.com/$(curl -s https://chromedriver.storage.googleapis.com/LATEST_RELEASE)/chromedriver_linux64.zip \
+# ChromeDriver 설치 (Chrome 129 버전과 호환되는 버전 사용)
+RUN wget -O /tmp/chromedriver.zip https://chromedriver.storage.googleapis.com/129.0.6668.89/chromedriver_linux64.zip \
     && unzip /tmp/chromedriver.zip -d /usr/local/bin/ \
     && rm /tmp/chromedriver.zip
+
+# Selenium의 cache 폴더 권한 문제 해결
+RUN mkdir -p /app/.cache/selenium && chmod -R 777 /app/.cache/selenium
 
 # Python 종속성 설치
 COPY requirements.txt .
@@ -28,4 +31,3 @@ COPY . .
 
 # 스크립트 실행
 CMD ["python3", "/app/app/data_upload/crawl_update_daily_data.py"]
-

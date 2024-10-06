@@ -31,7 +31,10 @@ def get_chrome_driver():
     chrome_options.add_argument("--headless")
     chrome_options.add_argument("--no-sandbox")
     chrome_options.add_argument("--disable-dev-shm-usage")
+    chrome_options.add_argument("--disable-gpu")  # GPU 비활성화 옵션 추가
+    chrome_options.add_argument("--disable-software-rasterizer")  # 소프트웨어 렌더링 비활성화 옵션 추가
     return webdriver.Chrome(options=chrome_options)
+
 
 # 현재 달의 데이터를 삭제하는 함수
 def delete_current_month_data():
@@ -260,7 +263,18 @@ def update_all_data():
 
 # 스케줄 설정 및 실행 함수
 def run_scheduler():
-    schedule.every(1).minutes.do(update_all_data)  # 2분마다 업데이트
+    schedule.every(1).minutes.do(update_all_data)
+    # 스케줄 설정 (설정한 시간대마다 update_all_data 실행)
+    # schedule.every().day.at("14:00").do(update_all_data)
+    # schedule.every().day.at("17:00").do(update_all_data)
+    # schedule.every().day.at("17:15").do(update_all_data)
+    # schedule.every().day.at("17:30").do(update_all_data)
+    # schedule.every().day.at("18:00").do(update_all_data)
+    # schedule.every().day.at("18:30").do(update_all_data)
+    # schedule.every().day.at("21:15").do(update_all_data)
+    # schedule.every().day.at("21:30").do(update_all_data)
+    # schedule.every().day.at("21:45").do(update_all_data)
+    # schedule.every().day.at("22:10").do(update_all_data)
 
     while True:
         schedule.run_pending()
