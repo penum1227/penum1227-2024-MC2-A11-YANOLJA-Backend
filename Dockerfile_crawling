@@ -4,6 +4,7 @@ FROM python:3.11
 RUN apt-get update && apt-get install -y wget gnupg2 unzip \
     libx11-xcb1 libxcomposite1 libxcursor1 libxdamage1 libxi6 libxtst6 \
     libnss3 libnss3-dev libxrandr2 libasound2 libpangocairo-1.0-0 libatk1.0-0 libatk-bridge2.0-0 libgtk-3-0 \
+    libgbm-dev \
     && apt-get clean
 
 # Chrome 설치
@@ -12,6 +13,11 @@ RUN wget -q -O - https://dl.google.com/linux/linux_signing_key.pub | gpg --dearm
     && apt-get update \
     && apt-get install -y google-chrome-stable \
     && apt-get clean
+
+# ChromeDriver 설치
+RUN wget -O /tmp/chromedriver.zip https://chromedriver.storage.googleapis.com/116.0.5845.96/chromedriver_linux64.zip \
+    && unzip /tmp/chromedriver.zip -d /usr/local/bin/ \
+    && rm /tmp/chromedriver.zip
 
 # Selenium 캐시 디렉토리 및 권한 설정
 RUN mkdir -p /app/selenium_cache && chmod -R 777 /app/selenium_cache
