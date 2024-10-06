@@ -38,8 +38,8 @@ RUN CHROME_VERSION=$(google-chrome --version | cut -d ' ' -f 3) \
     && unzip /tmp/chromedriver.zip -d /usr/local/bin/ \
     && rm /tmp/chromedriver.zip
 
-# Chrome 및 ChromeDriver 버전 확인
-RUN google-chrome --version && /usr/local/bin/chromedriver --version
+# Chrome 및 ChromeDriver 경로와 파일 확인
+RUN which google-chrome && which /usr/local/bin/chromedriver
 
 # Selenium 캐시 디렉토리 설정 및 권한 설정
 RUN mkdir -p /app/selenium_cache && chmod -R 777 /app/selenium_cache
