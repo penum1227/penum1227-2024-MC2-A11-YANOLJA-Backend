@@ -11,8 +11,9 @@ RUN apt-get update && apt-get install -y wget gnupg2 unzip \
     && apt-get update && apt-get install -y google-chrome-stable \
     && apt-get clean
 
-# ChromeDriver 설치 (Chrome 129 버전과 호환되는 버전 사용)
-RUN wget -O /tmp/chromedriver.zip https://chromedriver.storage.googleapis.com/129.0.6668.89/chromedriver_linux64.zip \
+# ChromeDriver 설치 (최신 릴리즈 다운로드)
+RUN LATEST_CHROMEDRIVER_VERSION=$(curl -s https://chromedriver.storage.googleapis.com/LATEST_RELEASE) \
+    && wget -O /tmp/chromedriver.zip https://chromedriver.storage.googleapis.com/${LATEST_CHROMEDRIVER_VERSION}/chromedriver_linux64.zip \
     && unzip /tmp/chromedriver.zip -d /usr/local/bin/ \
     && rm /tmp/chromedriver.zip
 
