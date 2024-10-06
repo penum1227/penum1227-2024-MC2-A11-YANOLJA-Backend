@@ -8,39 +8,33 @@ RUN apt-get update && apt-get install -y wget gnupg2 unzip jq \
     libgbm-dev fonts-liberation libappindicator3-1 xdg-utils \
     && apt-get clean
 
-# Google Chrome 설치
-RUN wget -q -O - https://dl.google.com/linux/linux_signing_key.pub | gpg --dearmor -o /usr/share/keyrings/google-chrome.gpg \
-    && sh -c 'echo "deb [arch=amd64 signed-by=/usr/share/keyrings/google-chrome.gpg] http://dl.google.com/linux/chrome/deb/ stable main" > /etc/apt/sources.list.d/google-chrome.list' \
-    && apt-get update \
-    && apt-get install -y google-chrome-stable \
-    && apt-get clean
-
-# Chrome 및 ChromeDriver 실행 경로를 권한이 더 자유로운 경로로 설정
+# /opt/google/chrome 디렉터리에 Chrome 설치
 RUN mkdir -p /opt/google/chrome \
-    && cp /usr/bin/google-chrome /opt/google/chrome/google-chrome \
-    && chmod -R 755 /opt/google/chrome
+    && wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb \
+    && dpkg -x google-chrome-stable_current_amd64.deb /opt/google/chrome \
+    && ln -s /opt/google/chrome/opt/google/chrome/google-chrome /usr/bin/google-chrome \
+    && rm google-chrome-stable_current_amd64.deb
 
-# ENV 변수 수정 (새로운 경로 사용)
-ENV CHROME_BIN=/opt/google/chrome/google-chrome
-ENV CHROME_DRIVER=/opt/google/chrome/chromedriver
+# Chrome 실행 경로를 /opt/google/chrome/google-chrome 으로 설정
+ENV CHROME_BIN=/opt/google/chrome/opt/google/chrome/google-chrome
+ENV CHROME_DRIVER=/opt/chrome/chromedriver
 
 # ChromeDriver 설치 (Chrome의 Major 버전과 일치)
 RUN CHROME_VERSION=$($CHROME_BIN --version | cut -d ' ' -f 3) \
     && DRIVER_URL=$(curl -sS https://googlechromelabs.github.io/chrome-for-testing/known-good-versions-with-downloads.json \
         | jq -r --arg version "$CHROME_VERSION" '.versions[] | select(.version==$version) | .downloads.chromedriver[] | select(.platform=="linux64").url') \
     && if [ -z "$DRIVER_URL" ]; then \
-        echo "ChromeDriver URL을 찾지 못했습니다. 최신 버전을 다운로드합니다." \
-        && DRIVER_URL="https://chromedriver.storage.googleapis.com/114.0.5735.90/chromedriver_linux64.zip"; \
+        echo "ChromeDriver URL을 찾지 못했습니다. 빌드를 중단합니다." \
+        && exit 1; \
     fi \
     && wget -O /tmp/chromedriver.zip "$DRIVER_URL" \
-    && unzip /tmp/chromedriver.zip -d /tmp/ \
-    && mv /tmp/chromedriver-linux64/chromedriver /opt/google/chrome/chromedriver \
-    && chmod +x /opt/google/chrome/chromedriver \
+    && unzip /tmp/chromedriver.zip -d /opt/chrome/ \
+    && chmod +x /opt/chrome/chromedriver \
     && rm -rf /tmp/chromedriver-linux64 \
     && rm /tmp/chromedriver.zip
 
-# 권한 설정 (Chrome 및 ChromeDriver 경로에 대해)
-RUN chmod -R 755 /opt/google/chrome/google-chrome && chmod -R 755 /opt/google/chrome/chromedriver
+# 권한 설정 (Chrome 및 ChromeDriver)
+RUN chmod -R 755 /opt/chrome/chromedriver && chmod -R 755 /opt/google/chrome
 
 # Python 종속성 설치
 COPY requirements.txt .
@@ -55,5 +49,5 @@ WORKDIR /app
 # 프로젝트 파일 복사
 COPY . .
 
-# 스크립트 실행
-CMD ["python3", "/app/app/data_upload/crawl_update_daily_data.py"]
+# 크롬 실행 시 추가로 --no-sandbox 옵션을 사용
+CMD ["python3", "/app/app/data_upload/crawl_update_daily_data.py", "--no-sandbox"]
