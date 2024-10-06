@@ -1,7 +1,8 @@
+# Python 3.11 베이스 이미지
 FROM python:3.11
 
 # 필수 패키지 설치
-RUN apt-get update && apt-get install -y wget gnupg2 unzip jq curl \
+RUN apt-get update && apt-get install -y wget gnupg2 unzip \
     libx11-xcb1 libxcomposite1 libxcursor1 libxdamage1 libxi6 libxtst6 \
     libnss3 libxrandr2 libasound2 libpangocairo-1.0-0 libatk1.0-0 libgtk-3-0 \
     libgbm-dev fonts-liberation libappindicator3-1 xdg-utils \
@@ -14,7 +15,7 @@ RUN wget -q -O - https://dl.google.com/linux/linux_signing_key.pub | gpg --dearm
     && apt-get install -y google-chrome-stable \
     && apt-get clean
 
-# Chrome 실행 경로 및 권한 설정
+# Chrome 실행 경로를 /usr/bin/google-chrome 으로 설정
 ENV CHROME_BIN=/usr/bin/google-chrome
 ENV CHROME_DRIVER=/usr/local/bin/chromedriver
 
@@ -30,31 +31,22 @@ RUN CHROME_VERSION=$(google-chrome --version | cut -d ' ' -f 3) \
     && unzip /tmp/chromedriver.zip -d /usr/local/bin/ \
     && rm /tmp/chromedriver.zip
 
-# Chrome을 루트가 아닌 일반 사용자로 실행하기 위한 유저 설정
-RUN useradd -m chromeuser && mkdir -p /home/chromeuser && chown -R chromeuser:chromeuser /home/chromeuser
+# ChromeDriver에 실행 권한 부여
+RUN chmod +x /usr/local/bin/chromedriver
 
-# /dev/shm 디렉토리 설정 (공유 메모리 이슈 해결)
-RUN mkdir -p /dev/shm && chmod 1777 /dev/shm
-
-# Chrome 실행시 필요한 권한을 추가 (샌드박스 및 shm 사용 비활성화)
-ENV CHROME_OPTS="--no-sandbox --disable-dev-shm-usage --headless --disable-gpu --disable-software-rasterizer --remote-debugging-port=9222 --disable-setuid-sandbox"
-
-# Selenium 캐시 디렉토리 설정 및 권한 설정
-RUN mkdir -p /app/selenium_cache && chmod -R 777 /app/selenium_cache
-RUN mkdir -p /.cache/selenium && chmod -R 777 /.cache/selenium
-
-# 작업 디렉토리 설정
-WORKDIR /app
-
-# PYTHONPATH 설정
-ENV PYTHONPATH=/app
+# Chrome 및 ChromeDriver 권한 설정
+RUN chown -R root:root /opt/google/chrome && \
+    chmod -R 755 /opt/google/chrome
 
 # Python 종속성 설치
 COPY requirements.txt .
 RUN pip install --no-cache-dir -r requirements.txt
 
-# 일반 유저로 실행
-USER chromeuser
+PYTHONPATH 설정
+ENV PYTHONPATH=/app
+
+# 작업 디렉토리 설정
+WORKDIR /app
 
 # 프로젝트 파일 복사
 COPY . .
