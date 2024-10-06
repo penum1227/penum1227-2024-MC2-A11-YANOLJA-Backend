@@ -27,19 +27,20 @@ logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)
 
 
-# 크롬 옵션 설정 (헤드리스 모드)
 def get_chrome_driver():
-    chrome_options = Options()
+    chrome_options = webdriver.ChromeOptions()
+
+    # Selenium 캐시 경로 설정
+    cache_path = "/app/selenium_cache"
+    os.makedirs(cache_path, exist_ok=True)
+    os.environ["SELMEN_CACHE_PATH"] = cache_path
+
+    # 크롬 옵션 설정 (헤드리스 모드 등 추가 설정 필요할 경우)
     chrome_options.add_argument("--headless")
     chrome_options.add_argument("--no-sandbox")
     chrome_options.add_argument("--disable-dev-shm-usage")
-    chrome_options.add_argument("--disable-gpu")
-    chrome_options.add_argument("--disable-software-rasterizer")
-    chrome_options.add_argument("--remote-debugging-port=9222")
 
-    # Selenium Manager의 캐시 폴더 경로를 /tmp로 변경
-    os.environ['SELENIUM_MANAGER_CACHE_PATH'] = '/tmp/selenium_cache'
-
+    # Chrome WebDriver 실행
     return webdriver.Chrome(options=chrome_options)
 
 
