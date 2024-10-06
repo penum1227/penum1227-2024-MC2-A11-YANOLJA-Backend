@@ -26,10 +26,8 @@ RUN apt-get update && apt-get install -y \
 COPY requirements.txt .
 RUN pip install --no-cache-dir -r requirements.txt
 
-# Playwright 설치 및 브라우저 다운로드
-RUN pip install playwright
-RUN playwright install-deps
-RUN playwright install chromium
+# Playwright 브라우저 설치 및 권한 설정
+RUN playwright install --with-deps
 
 # PYTHONPATH 설정
 ENV PYTHONPATH=/app
@@ -39,9 +37,6 @@ WORKDIR /app
 
 # 프로젝트 파일 복사
 COPY . .
-
-# Playwright가 설치된 브라우저 경로 지정
-ENV PLAYWRIGHT_BROWSERS_PATH=/ms-playwright
 
 # 크롬 실행 시 추가로 --no-sandbox 옵션을 사용하여 Playwright에서 크롬 실행
 CMD ["python3", "/app/app/data_upload/crawl_update_daily_data.py"]
