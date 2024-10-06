@@ -1,48 +1,33 @@
 # Python 3.11 베이스 이미지
 FROM python:3.11
 
-# 필수 패키지 설치
-RUN apt-get update && apt-get install -y wget gnupg2 unzip jq \
-    libx11-xcb1 libxcomposite1 libxcursor1 libxdamage1 libxi6 libxtst6 \
-    libnss3 libxrandr2 libasound2 libpangocairo-1.0-0 libatk1.0-0 libgtk-3-0 \
-    libgbm-dev fonts-liberation libappindicator3-1 xdg-utils \
-    && apt-get clean
+# 필수 패키지 설치 (Playwright와 함께 동작하기 위해 필요한 라이브러리들)
+RUN apt-get update && apt-get install -y \
+    libnss3 \
+    libatk1.0-0 \
+    libatk-bridge2.0-0 \
+    libcups2 \
+    libxcomposite1 \
+    libxrandr2 \
+    libxdamage1 \
+    libpango-1.0-0 \
+    libcairo2 \
+    libasound2 \
+    libx11-xcb1 \
+    libxshmfence1 \
+    libgbm1 \
+    libxkbcommon0 \
+    wget \
+    unzip \
+    && apt-get clean \
+    && rm -rf /var/lib/apt/lists/*
 
-# Google Chrome 설치
-RUN wget -q -O - https://dl.google.com/linux/linux_signing_key.pub | gpg --dearmor -o /usr/share/keyrings/google-chrome.gpg \
-    && sh -c 'echo "deb [arch=amd64 signed-by=/usr/share/keyrings/google-chrome.gpg] http://dl.google.com/linux/chrome/deb/ stable main" > /etc/apt/sources.list.d/google-chrome.list' \
-    && apt-get update \
-    && apt-get install -y google-chrome-stable \
-    && apt-get clean
-
-# Chrome 실행 경로 설정 (기존 경로 확인)
-ENV CHROME_BIN=/usr/bin/google-chrome
-ENV CHROME_DRIVER=/usr/local/bin/chromedriver
-
-# ChromeDriver 설치 (Chrome의 Major 버전과 일치)
-RUN set -x \
-    && CHROME_VERSION=$($CHROME_BIN --version | cut -d ' ' -f 3) \
-    && echo "Using Chrome version: $CHROME_VERSION" \
-    && DRIVER_URL=$(curl -sS https://googlechromelabs.github.io/chrome-for-testing/known-good-versions-with-downloads.json \
-        | jq -r --arg version "$CHROME_VERSION" '.versions[] | select(.version==$version) | .downloads.chromedriver[] | select(.platform=="linux64").url') \
-    && if [ -z "$DRIVER_URL" ]; then \
-        echo "ChromeDriver URL을 찾지 못했습니다. 빌드를 중단합니다." \
-        && exit 1; \
-    fi \
-    && echo "Downloading ChromeDriver from: $DRIVER_URL" \
-    && wget -O /tmp/chromedriver.zip "$DRIVER_URL" \
-    && unzip /tmp/chromedriver.zip -d /tmp/ \
-    && mv /tmp/chromedriver-linux64/chromedriver /usr/local/bin/chromedriver \
-    && chmod +x /usr/local/bin/chromedriver \
-    && rm -rf /tmp/chromedriver-linux64 \
-    && rm /tmp/chromedriver.zip
-
-# 권한 설정
-RUN chmod -R 755 /opt/google/chrome && chmod -R 755 /usr/local/bin/chromedriver
-
-# Python 종속성 설치
+# Python 종속성 설치 및 Playwright 설치
 COPY requirements.txt .
 RUN pip install --no-cache-dir -r requirements.txt
+
+# Playwright 브라우저 설치
+RUN playwright install --with-deps
 
 # PYTHONPATH 설정
 ENV PYTHONPATH=/app
@@ -53,5 +38,5 @@ WORKDIR /app
 # 프로젝트 파일 복사
 COPY . .
 
-# 크롬 실행 시 추가로 --no-sandbox 옵션을 사용
-CMD ["python3", "/app/app/data_upload/crawl_update_daily_data.py", "--no-sandbox"]
+# 크롬 실행 시 추가로 --no-sandbox 옵션을 사용하여 Playwright에서 크롬 실행
+CMD ["python3", "/app/app/data_upload/crawl_update_daily_data.py"]

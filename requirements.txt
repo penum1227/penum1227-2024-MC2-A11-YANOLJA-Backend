@@ -10,12 +10,11 @@ pymongo==4.9.1
 motor==3.6.0
 
 # 크롤링 및 웹 스크래핑
-selenium==4.25.0
 beautifulsoup4==4.12.3
 schedule==1.2.2
 pandas==2.2.3
-webdriver-manager==4.0.2
 
 # 기타
 python-dotenv==1.0.1  # 환경 변수 관리
 requests==2.32.3  # HTTP 요청 라이브러리
+playwright
