@@ -29,17 +29,13 @@ logger = logging.getLogger(__name__)
 
 def get_chrome_driver():
     chrome_options = Options()
-    chrome_options.add_argument("--headless")  # Ensure headless mode is enabled
-    chrome_options.add_argument("--no-sandbox")  # Bypass OS security model
-    chrome_options.add_argument("--disable-dev-shm-usage")  # Overcome limited resource problems
-    chrome_options.add_argument("--disable-gpu")  # Disable GPU in headless mode
-    chrome_options.add_argument("--window-size=1920x1080")  # Set a default window size
-    chrome_options.add_argument("--disable-extensions")
+    chrome_options.add_argument("--headless")
+    chrome_options.add_argument("--no-sandbox")
+    chrome_options.add_argument("--disable-dev-shm-usage")
+    chrome_options.add_argument("--disable-gpu")
     chrome_options.add_argument("--disable-software-rasterizer")
-    chrome_options.add_argument("--remote-debugging-port=9222")
-
+    chrome_options.add_argument("--window-size=1920x1080")
     return webdriver.Chrome(options=chrome_options)
-
 
 # 현재 달의 데이터를 삭제하는 함수
 def delete_current_month_data():
