@@ -26,7 +26,7 @@ RUN apt-get update && apt-get install -y \
 COPY requirements.txt .
 RUN pip install --no-cache-dir -r requirements.txt
 
-# Playwright 브라우저 설치 및 캐시 디렉터리 변경
+# Playwright 브라우저 설치 및 캐시 디렉토리 변경
 ENV PLAYWRIGHT_BROWSERS_PATH=/root/.cache/ms-playwright
 RUN mkdir -p /root/.cache/ms-playwright && chmod -R 777 /root/.cache/ms-playwright
 RUN playwright install --with-deps
@@ -39,6 +39,9 @@ WORKDIR /app
 
 # 프로젝트 파일 복사
 COPY . .
+
+# Playwright가 설치된 브라우저 경로 지정
+ENV PLAYWRIGHT_BROWSERS_PATH=/root/.cache/ms-playwright
 
 # 크롬 실행 시 추가로 --no-sandbox 옵션을 사용하여 Playwright에서 크롬 실행
 CMD ["python3", "/app/app/data_upload/crawl_update_daily_data.py"]

@@ -279,5 +279,5 @@ def run_scheduler():
 
 # 스케줄러 실행
 if __name__ == "__main__":
-    run_scheduler()
-    #update_all_data()
+    #run_scheduler()
+    update_all_data()
