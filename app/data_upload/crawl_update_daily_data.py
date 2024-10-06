@@ -4,8 +4,6 @@ from selenium import webdriver
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.chrome.options import Options
-from webdriver_manager.chrome import ChromeDriverManager
-from selenium.webdriver.chrome.service import Service
 from selenium.common.exceptions import TimeoutException
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.support.ui import Select
@@ -41,13 +39,10 @@ def get_chrome_driver():
     chrome_options.add_argument("--disable-software-rasterizer")
     chrome_options.add_argument("--disable-setuid-sandbox")
 
-    # 캐시 경로 설정
-    cache_path = "/tmp/.wdm"
-    os.makedirs(cache_path, exist_ok=True)
-    os.environ["WDM_LOCAL"] = cache_path  # 캐시 경로 환경 변수 설정
+    # 상대 경로로 설정 (예: /app/bin/chromedriver)
+    driver_path = os.path.join(os.path.dirname(__file__), 'bin', 'chromedriver')
 
-    # WebDriverManager로 ChromeDriver 실행 (캐시 재사용)
-    return webdriver.Chrome(service=Service(ChromeDriverManager().install()), options=chrome_options)
+    return webdriver.Chrome(executable_path=driver_path, options=chrome_options)
 
 
 
