@@ -10,7 +10,7 @@ pymongo==4.9.1
 motor==3.6.0
 
 # 크롤링 및 웹 스크래핑
-selenium==4.25.0
+selenium==4.6.0
 beautifulsoup4==4.12.3
 schedule==1.2.2
 pandas==2.2.3
