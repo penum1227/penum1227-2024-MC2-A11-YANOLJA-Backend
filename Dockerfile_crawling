@@ -8,32 +8,34 @@ RUN apt-get update && apt-get install -y wget gnupg2 unzip jq \
     libgbm-dev fonts-liberation libappindicator3-1 xdg-utils \
     && apt-get clean
 
-# /opt/google/chrome 디렉터리에 Chrome 설치
-RUN mkdir -p /opt/google/chrome \
-    && wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb \
-    && dpkg -x google-chrome-stable_current_amd64.deb /opt/google/chrome \
-    && ln -s /opt/google/chrome/opt/google/chrome/google-chrome /usr/bin/google-chrome \
-    && rm google-chrome-stable_current_amd64.deb
+# Google Chrome 설치
+RUN wget -q -O - https://dl.google.com/linux/linux_signing_key.pub | gpg --dearmor -o /usr/share/keyrings/google-chrome.gpg \
+    && sh -c 'echo "deb [arch=amd64 signed-by=/usr/share/keyrings/google-chrome.gpg] http://dl.google.com/linux/chrome/deb/ stable main" > /etc/apt/sources.list.d/google-chrome.list' \
+    && apt-get update \
+    && apt-get install -y google-chrome-stable \
+    && apt-get clean
 
 # Chrome 실행 경로를 /opt/google/chrome/google-chrome 으로 설정
 ENV CHROME_BIN=/opt/google/chrome/opt/google/chrome/google-chrome
 ENV CHROME_DRIVER=/opt/chrome/chromedriver
 
-# ChromeDriver 설치 (Chrome의 Major 버전과 일치)
-RUN CHROME_VERSION=$($CHROME_BIN --version | cut -d ' ' -f 3) \
+# 디버깅을 위한 set -x 활성화
+RUN set -x \
+    && CHROME_VERSION=$($CHROME_BIN --version | cut -d ' ' -f 3) \
+    && echo "Using Chrome version: $CHROME_VERSION" \
     && DRIVER_URL=$(curl -sS https://googlechromelabs.github.io/chrome-for-testing/known-good-versions-with-downloads.json \
         | jq -r --arg version "$CHROME_VERSION" '.versions[] | select(.version==$version) | .downloads.chromedriver[] | select(.platform=="linux64").url') \
     && if [ -z "$DRIVER_URL" ]; then \
         echo "ChromeDriver URL을 찾지 못했습니다. 빌드를 중단합니다." \
         && exit 1; \
     fi \
+    && echo "Downloading ChromeDriver from: $DRIVER_URL" \
     && wget -O /tmp/chromedriver.zip "$DRIVER_URL" \
     && unzip /tmp/chromedriver.zip -d /opt/chrome/ \
     && chmod +x /opt/chrome/chromedriver \
-    && rm -rf /tmp/chromedriver-linux64 \
     && rm /tmp/chromedriver.zip
 
-# 권한 설정 (Chrome 및 ChromeDriver)
+# 권한 설정
 RUN chmod -R 755 /opt/chrome/chromedriver && chmod -R 755 /opt/google/chrome
 
 # Python 종속성 설치
