@@ -15,7 +15,7 @@ RUN wget -q -O - https://dl.google.com/linux/linux_signing_key.pub | gpg --dearm
     && apt-get install -y google-chrome-stable \
     && apt-get clean
 
-# Chrome 실행 경로를 /usr/bin/google-chrome 으로 설정
+# Chrome 실행 경로 설정 (기존 경로 확인)
 ENV CHROME_BIN=/usr/bin/google-chrome
 ENV CHROME_DRIVER=/usr/local/bin/chromedriver
 
