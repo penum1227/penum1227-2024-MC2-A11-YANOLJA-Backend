@@ -25,17 +25,22 @@ kbo_stadium_data_collection = db['kbo_stadium_data']
 logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)
 
-# 크롬 옵션 설정 (헤드리스 모드)
+
 def get_chrome_driver():
     chrome_options = Options()
-    chrome_options.add_argument("--headless")
-    chrome_options.add_argument("--no-sandbox")
-    chrome_options.add_argument("--disable-dev-shm-usage")
+    chrome_options.add_argument("--headless")  # GUI 없이 실행
+    chrome_options.add_argument("--no-sandbox")  # 샌드박스 비활성화
+    chrome_options.add_argument("--disable-dev-shm-usage")  # /dev/shm 사용 안함
     chrome_options.add_argument("--disable-gpu")  # GPU 비활성화
     chrome_options.add_argument("--disable-software-rasterizer")  # 소프트웨어 렌더링 비활성화
-    chrome_options.add_argument("--remote-debugging-port=9222")  # DevTools 포트 활성화
+    chrome_options.add_argument("--remote-debugging-port=9222")  # 디버깅 포트 활성화
     chrome_options.add_argument("--window-size=1920x1080")  # 창 크기 설정
+    chrome_options.add_argument("--user-data-dir=/tmp/user-data")  # 임시 사용자 데이터 폴더 설정
+    chrome_options.add_argument("--data-path=/tmp/data-path")  # 임시 데이터 폴더 설정
+    chrome_options.add_argument("--homedir=/tmp")  # 홈 디렉토리 경로 설정
+    chrome_options.add_argument("--disk-cache-dir=/tmp/cache-dir")  # 캐시 디렉토리 설정
     return webdriver.Chrome(options=chrome_options)
+
 
 
 
