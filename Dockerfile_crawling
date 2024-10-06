@@ -46,6 +46,10 @@ RUN CHROME_VERSION=$(google-chrome --version | cut -d ' ' -f 3) \
 # Chrome 및 ChromeDriver 경로와 파일 확인
 RUN which google-chrome && ls -l /usr/local/bin/chromedriver
 
+# Chrome 설치 후 권한 설정
+RUN chmod -R 755 /opt/google/chrome/
+
+
 # Selenium 캐시 디렉토리 설정 및 권한 설정
 RUN mkdir -p /app/selenium_cache && chmod -R 777 /app/selenium_cache
 RUN mkdir -p /.cache/selenium && chmod -R 777 /.cache/selenium
