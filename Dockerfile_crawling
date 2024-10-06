@@ -1,71 +1,59 @@
-# Python 3.11 베이스 이미지
 FROM python:3.11
 
 # 필수 패키지 설치
-RUN apt-get update && apt-get install -y \
-    wget \
-    gnupg2 \
-    unzip \
-    jq \
-    libx11-xcb1 \
-    libxcomposite1 \
-    libxcursor1 \
-    libxdamage1 \
-    libxi6 \
-    libxtst6 \
-    libnss3 \
-    libxrandr2 \
-    libasound2 \
-    libpangocairo-1.0-0 \
-    libatk1.0-0 \
-    libgtk-3-0 \
-    libgbm-dev \
+RUN apt-get update && apt-get install -y wget gnupg2 unzip \
+    libx11-xcb1 libxcomposite1 libxcursor1 libxdamage1 libxi6 libxtst6 \
+    libnss3 libxrandr2 libasound2 libpangocairo-1.0-0 libatk1.0-0 libgtk-3-0 \
+    libgbm-dev fonts-liberation libappindicator3-1 xdg-utils \
     && apt-get clean
 
-# Google Chrome 설치
+# Chrome 설치
 RUN wget -q -O - https://dl.google.com/linux/linux_signing_key.pub | gpg --dearmor -o /usr/share/keyrings/google-chrome.gpg \
     && sh -c 'echo "deb [arch=amd64 signed-by=/usr/share/keyrings/google-chrome.gpg] http://dl.google.com/linux/chrome/deb/ stable main" > /etc/apt/sources.list.d/google-chrome.list' \
     && apt-get update \
     && apt-get install -y google-chrome-stable \
     && apt-get clean
 
-# ChromeDriver 설치 (Chrome for Testing 사용)
+# Chrome 실행 경로를 /usr/bin/google-chrome 으로 설정
+ENV CHROME_BIN=/usr/bin/google-chrome
+ENV CHROME_DRIVER=/usr/local/bin/chromedriver
+
+# ChromeDriver 설치 (Chrome의 Major 버전과 일치)
 RUN CHROME_VERSION=$(google-chrome --version | cut -d ' ' -f 3) \
-    && echo "Using Chrome version: $CHROME_VERSION" \
-    && DRIVER_URL=$(curl -sS https://googlechromelabs.github.io/chrome-for-testing/known-good-versions-with-downloads.json | jq -r --arg version "$CHROME_VERSION" '.versions[] | select(.version==$version) | .downloads.chromedriver[] | select(.platform=="linux64").url') \
-    && if [ -z "$DRIVER_URL" ]; then echo "ChromeDriver URL을 찾지 못했습니다. 최신 버전을 다운로드합니다." && DRIVER_URL="https://chromedriver.storage.googleapis.com/114.0.5735.90/chromedriver_linux64.zip"; fi \
-    && echo "Downloading ChromeDriver from: $DRIVER_URL" \
-    && wget -O /tmp/chromedriver.zip $DRIVER_URL \
-    && echo "Unzipping ChromeDriver..." \
+    && DRIVER_URL=$(curl -sS https://googlechromelabs.github.io/chrome-for-testing/known-good-versions-with-downloads.json \
+        | jq -r --arg version "$CHROME_VERSION" '.versions[] | select(.version==$version) | .downloads.chromedriver[] | select(.platform=="linux64").url') \
+    && if [ -z "$DRIVER_URL" ]; then \
+        echo "ChromeDriver URL을 찾지 못했습니다. 최신 버전을 다운로드합니다." \
+        && DRIVER_URL="https://chromedriver.storage.googleapis.com/114.0.5735.90/chromedriver_linux64.zip"; \
+    fi \
+    && wget -O /tmp/chromedriver.zip "$DRIVER_URL" \
     && unzip /tmp/chromedriver.zip -d /usr/local/bin/ \
-    && mv /usr/local/bin/chromedriver-linux64/chromedriver /usr/local/bin/chromedriver \
-    && rm -rf /usr/local/bin/chromedriver-linux64 \
-    && rm /tmp/chromedriver.zip \
-    && ls -l /usr/local/bin/chromedriver  # 파일 존재 여부 확인
+    && rm /tmp/chromedriver.zip
 
-# Chrome 및 ChromeDriver 경로와 파일 확인
-RUN which google-chrome && ls -l /usr/local/bin/chromedriver
-
-# Chrome 설치 후 권한 설정
-RUN chmod -R 755 /opt/google/chrome/
-
-
-# Selenium 캐시 디렉토리 설정 및 권한 설정
-RUN mkdir -p /app/selenium_cache && chmod -R 777 /app/selenium_cache
-RUN mkdir -p /.cache/selenium && chmod -R 777 /.cache/selenium
-
-# 작업 디렉토리 설정
-WORKDIR /app
+# 강력한 권한을 부여한 Chrome 실행 옵션 추가
+RUN echo '#!/bin/bash\n\
+exec /usr/bin/google-chrome \
+    --no-sandbox \
+    --disable-dev-shm-usage \
+    --disable-gpu \
+    --disable-software-rasterizer \
+    --headless \
+    --remote-debugging-port=9222 \
+    --disable-setuid-sandbox \
+    "$@"' > /usr/bin/chrome-wrapper && chmod +x /usr/bin/chrome-wrapper
 
 # Python 종속성 설치
 COPY requirements.txt .
 RUN pip install --no-cache-dir -r requirements.txt
 
-# 환경 변수 설정
-ENV PYTHONPATH=/app
+# 작업 디렉토리 설정
+WORKDIR /app
 
 # 프로젝트 파일 복사
 COPY . .
+
+# Chrome과 ChromeDriver의 권한 확인 (디버깅용)
+RUN ls -l /usr/bin/google-chrome && ls -l /usr/local/bin/chromedriver
 
 # 스크립트 실행
 CMD ["python3", "/app/app/data_upload/crawl_update_daily_data.py"]
