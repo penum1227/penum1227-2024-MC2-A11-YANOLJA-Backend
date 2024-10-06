@@ -28,12 +28,15 @@ RUN CHROME_VERSION=$(google-chrome --version | cut -d ' ' -f 3) \
         && DRIVER_URL="https://chromedriver.storage.googleapis.com/114.0.5735.90/chromedriver_linux64.zip"; \
     fi \
     && wget -O /tmp/chromedriver.zip "$DRIVER_URL" \
-    && unzip /tmp/chromedriver.zip -d /usr/local/bin/ \
+    && unzip /tmp/chromedriver.zip -d /tmp/ \
+    && mv /tmp/chromedriver-linux64/chromedriver /usr/local/bin/chromedriver \
     && chmod +x /usr/local/bin/chromedriver \
+    && rm -rf /tmp/chromedriver-linux64 \
     && rm /tmp/chromedriver.zip
 
 # 권한 설정
 RUN chmod -R 755 /usr/local/bin/chromedriver && chmod -R 755 /usr/bin/google-chrome
+
 
 # Python 종속성 설치
 COPY requirements.txt .
