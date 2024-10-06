@@ -32,7 +32,8 @@ def get_chrome_driver():
 
     # Selenium 캐시 경로 설정
     cache_path = "/app/selenium_cache"
-    os.makedirs(cache_path, exist_ok=True)
+
+    # 환경 변수 설정
     os.environ["SELMEN_CACHE_PATH"] = cache_path
 
     # 크롬 옵션 설정 (헤드리스 모드 등 추가 설정 필요할 경우)
