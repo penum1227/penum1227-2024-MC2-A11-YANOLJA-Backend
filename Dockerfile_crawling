@@ -35,11 +35,13 @@ RUN CHROME_VERSION=$(google-chrome --version | cut -d ' ' -f 3) \
     && DRIVER_URL=$(curl -sS https://googlechromelabs.github.io/chrome-for-testing/known-good-versions-with-downloads.json | jq -r --arg version "$CHROME_VERSION" '.versions[] | select(.version==$version) | .downloads.chromedriver[] | select(.platform=="linux64").url') \
     && echo "Downloading ChromeDriver from: $DRIVER_URL" \
     && wget -O /tmp/chromedriver.zip $DRIVER_URL \
+    && echo "Unzipping ChromeDriver..." \
     && unzip /tmp/chromedriver.zip -d /usr/local/bin/ \
-    && rm /tmp/chromedriver.zip
+    && rm /tmp/chromedriver.zip \
+    && ls -l /usr/local/bin/chromedriver  # 파일 존재 여부 확인
 
 # Chrome 및 ChromeDriver 경로와 파일 확인
-RUN which google-chrome && which /usr/local/bin/chromedriver
+RUN which google-chrome && ls -l /usr/local/bin/chromedriver
 
 # Selenium 캐시 디렉토리 설정 및 권한 설정
 RUN mkdir -p /app/selenium_cache && chmod -R 777 /app/selenium_cache
