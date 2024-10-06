@@ -14,16 +14,15 @@ RUN wget -q -O - https://dl.google.com/linux/linux_signing_key.pub | gpg --dearm
     && apt-get install -y google-chrome-stable \
     && apt-get clean
 
-# ChromeDriver 설치
-RUN wget -O /tmp/chromedriver.zip https://chromedriver.storage.googleapis.com/129.0.6668.89/chromedriver_linux64.zip \
+# ChromeDriver 설치 (Chrome 버전과 일치)
+RUN CHROME_VERSION=$(google-chrome --version | grep -oP '\d+\.\d+\.\d+') \
+    && wget -O /tmp/chromedriver.zip https://chromedriver.storage.googleapis.com/$CHROME_VERSION/chromedriver_linux64.zip \
     && unzip /tmp/chromedriver.zip -d /usr/local/bin/ \
     && rm /tmp/chromedriver.zip
 
-# WebDriverManager 캐시 디렉토리 생성 및 권한 부여
-RUN mkdir -p /tmp/.wdm && chmod -R 777 /tmp/.wdm
-
 # Selenium 캐시 디렉토리 및 권한 설정
 RUN mkdir -p /app/selenium_cache && chmod -R 777 /app/selenium_cache
+RUN mkdir -p /.cache/selenium && chmod -R 777 /.cache/selenium
 
 # 작업 디렉토리 설정
 WORKDIR /app
@@ -34,7 +33,6 @@ RUN pip install --no-cache-dir -r requirements.txt
 
 # 환경 변수 설정
 ENV PYTHONPATH=/app
-ENV WDM_LOCAL=/tmp/.wdm
 
 # 프로젝트 파일 복사
 COPY . .
