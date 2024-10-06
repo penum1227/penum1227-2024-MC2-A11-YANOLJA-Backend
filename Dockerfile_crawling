@@ -1,4 +1,3 @@
-# Python 3.11 이미지 사용
 FROM python:3.11
 
 # 기본 패키지 설치
@@ -15,28 +14,21 @@ RUN wget -q -O - https://dl.google.com/linux/linux_signing_key.pub | gpg --dearm
     && apt-get install -y google-chrome-stable \
     && apt-get clean
 
-# ChromeDriver 설치
-RUN CHROME_DRIVER_VERSION=`curl -sS https://chromedriver.storage.googleapis.com/LATEST_RELEASE` \
-    && wget -O /tmp/chromedriver.zip https://chromedriver.storage.googleapis.com/${CHROME_DRIVER_VERSION}/chromedriver_linux64.zip \
-    && unzip /tmp/chromedriver.zip -d /usr/local/bin/ \
-    && rm /tmp/chromedriver.zip
-
-# Selenium 캐시 디렉토리 및 권한 설정
-RUN mkdir -p /app/selenium_cache && chmod -R 777 /app/selenium_cache
-RUN mkdir -p /.cache/selenium && chmod -R 777 /.cache/selenium
+# Selenium WebDriver 매니저 설치를 위한 webdriver-manager 패키지 설치
+COPY requirements.txt .
+RUN pip install --no-cache-dir -r requirements.txt
 
 # 작업 디렉토리 설정
 WORKDIR /app
 
-# Python 종속성 설치
-COPY requirements.txt .
+# 프로젝트 파일 복사
+COPY . .
+
+# Python 종속성 설치 (이미 COPY된 requirements.txt 사용)
 RUN pip install --no-cache-dir -r requirements.txt
 
 # 환경 변수 설정
 ENV PYTHONPATH=/app
-
-# 프로젝트 파일 복사
-COPY . .
 
 # 스크립트 실행
 CMD ["python3", "/app/app/data_upload/crawl_update_daily_data.py"]

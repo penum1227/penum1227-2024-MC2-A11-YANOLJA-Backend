@@ -14,6 +14,7 @@ selenium==4.25.0
 beautifulsoup4==4.12.3
 schedule==1.2.2
 pandas==2.2.3
+webdriver-manager==4.0.2
 
 # 기타
 python-dotenv==1.0.1  # 환경 변수 관리
