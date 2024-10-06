@@ -1,12 +1,12 @@
 import logging
 from datetime import datetime
 from selenium import webdriver
+from selenium.webdriver.chrome.options import Options
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.common.exceptions import TimeoutException
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.support.ui import Select
-from selenium.webdriver.chrome.options import Options
 from app.database_mongo import db
 from app.config import settings
 from update_google_sheets_to_mongodb import update_sheet_to_mongodb
@@ -25,16 +25,21 @@ kbo_stadium_data_collection = db['kbo_stadium_data']
 logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)
 
-# ChromeDriver 헤드리스 모드 및 자동 관리 설정
+
+
 def get_chrome_driver():
     chrome_options = Options()
-    chrome_options.add_argument("--headless")  # UI 없이 실행되는 헤드리스 모드
-    chrome_options.add_argument("--no-sandbox")  # 권한 관련 문제를 피하기 위해 사용
-    chrome_options.add_argument("--disable-dev-shm-usage")  # 메모리 문제 해결을 위해 사용
-    chrome_options.add_argument("--disable-gpu")  # GPU 렌더링을 비활성화 (일부 환경에서 필요)
-    chrome_options.add_argument("--remote-debugging-port=9222")  # 원격 디버깅 포트 설정
+    chrome_options.add_argument("--headless")  # Ensure headless mode is enabled
+    chrome_options.add_argument("--no-sandbox")  # Bypass OS security model
+    chrome_options.add_argument("--disable-dev-shm-usage")  # Overcome limited resource problems
+    chrome_options.add_argument("--disable-gpu")  # Disable GPU in headless mode
+    chrome_options.add_argument("--window-size=1920x1080")  # Set a default window size
+    chrome_options.add_argument("--disable-extensions")
+    chrome_options.add_argument("--disable-software-rasterizer")
+    chrome_options.add_argument("--remote-debugging-port=9222")
 
-    return webdriver.Chrome(options=chrome_options)  # Selenium Manager가 ChromeDriver 자동 관리
+    return webdriver.Chrome(options=chrome_options)
+
 
 # 현재 달의 데이터를 삭제하는 함수
 def delete_current_month_data():
