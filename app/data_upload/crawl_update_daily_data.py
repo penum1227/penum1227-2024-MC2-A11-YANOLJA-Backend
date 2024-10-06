@@ -29,16 +29,15 @@ logger = logging.getLogger(__name__)
 def get_chrome_driver():
     chrome_options = Options()
     chrome_options.add_argument("--headless")  # GUI 없이 실행
-    chrome_options.add_argument("--no-sandbox")  # 샌드박스 비활성화
-    chrome_options.add_argument("--disable-dev-shm-usage")  # /dev/shm 사용 안함
-    chrome_options.add_argument("--disable-gpu")  # GPU 비활성화
+    chrome_options.add_argument("--user-data-dir=/tmp/user-data")  # 사용자 데이터 경로 지정
+    chrome_options.add_argument("--data-path=/tmp/data-path")  # 데이터 경로 지정
+    chrome_options.add_argument("--homedir=/tmp")  # 홈 디렉토리 경로 지정
+    chrome_options.add_argument("--disk-cache-dir=/tmp/cache-dir")  # 캐시 디렉토리 경로 지정
+    chrome_options.add_argument("--disable-gpu")  # GPU 사용 비활성화
     chrome_options.add_argument("--disable-software-rasterizer")  # 소프트웨어 렌더링 비활성화
     chrome_options.add_argument("--remote-debugging-port=9222")  # 디버깅 포트 활성화
-    chrome_options.add_argument("--window-size=1920x1080")  # 창 크기 설정
-    chrome_options.add_argument("--user-data-dir=/tmp/user-data")  # 임시 사용자 데이터 폴더 설정
-    chrome_options.add_argument("--data-path=/tmp/data-path")  # 임시 데이터 폴더 설정
-    chrome_options.add_argument("--homedir=/tmp")  # 홈 디렉토리 경로 설정
-    chrome_options.add_argument("--disk-cache-dir=/tmp/cache-dir")  # 캐시 디렉토리 설정
+    chrome_options.add_argument("--no-sandbox")  # 샌드박스 비활성화 (Docker에서 필수)
+    chrome_options.add_argument("--disable-dev-shm-usage")  # /dev/shm 사용 비활성화
     return webdriver.Chrome(options=chrome_options)
 
 
