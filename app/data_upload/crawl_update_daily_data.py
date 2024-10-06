@@ -28,10 +28,6 @@ kbo_stadium_data_collection = db['kbo_stadium_data']
 logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)
 
-
-
-
-
 def get_chrome_driver():
     chrome_options = webdriver.ChromeOptions()
 
@@ -46,7 +42,6 @@ def get_chrome_driver():
 
     # WebDriverManager를 사용해 ChromeDriver를 설치 및 실행
     return webdriver.Chrome(service=Service(ChromeDriverManager().install()), options=chrome_options)
-
 
 
 # 현재 달의 데이터를 삭제하는 함수
