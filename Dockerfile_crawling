@@ -1,18 +1,25 @@
+# Use the official Python image
 FROM python:3.11
 
-# 필수 패키지 설치
-RUN apt-get update && apt-get install -y libssl3
-
-# 작업 디렉터리 설정
+# Set working directory
 WORKDIR /app
 
-# 코드 복사
-COPY . /app
+# Install dependencies
+COPY requirements.txt .
+RUN pip install --no-cache-dir -r requirements.txt
 
-# PYTHONPATH 설정
+# Install Chrome and ChromeDriver
+RUN apt-get update && apt-get install -y wget unzip \
+    && wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb \
+    && apt install -y ./google-chrome-stable_current_amd64.deb \
+    && wget -O /tmp/chromedriver.zip https://chromedriver.storage.googleapis.com/$(curl -s https://chromedriver.storage.googleapis.com/LATEST_RELEASE)/chromedriver_linux64.zip \
+    && unzip /tmp/chromedriver.zip -d /usr/local/bin/
+
+# Copy the project files
+COPY . .
+
+# Set the environment variables
 ENV PYTHONPATH=/app
 
-# 필요한 라이브러리 설치
-RUN pip install -r requirements.txt
-
+# Run the script
 CMD ["python3", "/app/app/data_upload/crawl_update_daily_data.py"]
