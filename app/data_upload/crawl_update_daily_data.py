@@ -28,6 +28,7 @@ kbo_stadium_data_collection = db['kbo_stadium_data']
 logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)
 
+
 def get_chrome_driver():
     chrome_options = webdriver.ChromeOptions()
 
@@ -40,12 +41,12 @@ def get_chrome_driver():
     chrome_options.add_argument("--disable-software-rasterizer")
     chrome_options.add_argument("--disable-setuid-sandbox")
 
-    # WebDriverManager의 캐시 경로를 변경 (쓰기가 가능한 경로)
+    # 캐시 경로 설정
     cache_path = "/tmp/.wdm"
     os.makedirs(cache_path, exist_ok=True)
     os.environ["WDM_LOCAL"] = cache_path  # 캐시 경로 환경 변수 설정
 
-    # WebDriverManager를 사용해 ChromeDriver를 설치 및 실행
+    # WebDriverManager로 ChromeDriver 실행 (캐시 재사용)
     return webdriver.Chrome(service=Service(ChromeDriverManager().install()), options=chrome_options)
 
 
@@ -263,36 +264,51 @@ def update_all_data():
 
     # 1. 현재 월의 정규 시즌 및 포스트 시즌 데이터 업데이트
     delete_current_month_data()
-    schedule_data = crawl_kbo_schedule(str(current_year), current_month, "regular")
-    save_to_mongodb(schedule_data)
 
-    schedule_data = crawl_kbo_schedule(str(current_year), current_month, "postseason")
-    save_to_mongodb(schedule_data)
+    try:
+        schedule_data = crawl_kbo_schedule(str(current_year), current_month, "regular")
+        if schedule_data:
+            save_to_mongodb(schedule_data)
+        else:
+            logger.warning("정규 시즌 데이터를 가져오지 못했습니다.")
+
+        schedule_data_post = crawl_kbo_schedule(str(current_year), current_month, "postseason")
+        if schedule_data_post:
+            save_to_mongodb(schedule_data_post)
+        else:
+            logger.warning("포스트 시즌 데이터를 가져오지 못했습니다.")
+    except Exception as e:
+        logger.error(f"데이터 크롤링 중 오류 발생: {e}")
 
     # 2. 팀별 승률 업데이트
-    crawl_kbo_team_winrate()
+    try:
+        crawl_kbo_team_winrate()
+    except Exception as e:
+        logger.error(f"팀별 승률 크롤링 중 오류 발생: {e}")
 
     # 3. Google Sheets 데이터 업로드
-    google_sheet_upload()
+    try:
+        google_sheet_upload()
+    except Exception as e:
+        logger.error(f"Google Sheets 데이터 업로드 중 오류 발생: {e}")
+
+    # 메모리 정리
+    gc.collect()
+
 
 # 스케줄 설정 및 실행 함수
 def run_scheduler():
-    schedule.every(1).minutes.do(update_all_data)
-    # 스케줄 설정 (설정한 시간대마다 update_all_data 실행)
-    # schedule.every().day.at("14:00").do(update_all_data)
-    # schedule.every().day.at("17:00").do(update_all_data)
-    # schedule.every().day.at("17:15").do(update_all_data)
-    # schedule.every().day.at("17:30").do(update_all_data)
-    # schedule.every().day.at("18:00").do(update_all_data)
-    # schedule.every().day.at("18:30").do(update_all_data)
-    # schedule.every().day.at("21:15").do(update_all_data)
-    # schedule.every().day.at("21:30").do(update_all_data)
-    # schedule.every().day.at("21:45").do(update_all_data)
-    # schedule.every().day.at("22:10").do(update_all_data)
+    # 스케줄을 매일 특정 시간에 설정
+    schedule.every().day.at("02:00").do(update_all_data)
+    schedule.every().day.at("14:00").do(update_all_data)
 
     while True:
-        schedule.run_pending()
-        time.sleep(1)
+        try:
+            schedule.run_pending()
+            time.sleep(1)  # 1초마다 대기
+        except Exception as e:
+            logger.error(f"스케줄 실행 중 오류 발생: {e}")
+            time.sleep(60)  # 60초 후 다시 시도
 
 # 스케줄러 실행
 if __name__ == "__main__":
