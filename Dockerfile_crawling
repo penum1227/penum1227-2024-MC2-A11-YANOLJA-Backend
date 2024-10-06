@@ -37,6 +37,5 @@ ENV PYTHONPATH=/app
 
 # 프로젝트 파일 복사
 COPY . .
-
 # 스크립트 실행
 CMD ["python3", "/app/app/data_upload/crawl_update_daily_data.py"]
