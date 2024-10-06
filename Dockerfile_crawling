@@ -1,13 +1,28 @@
+# Python 3.11 베이스 이미지
 FROM python:3.11
 
 # 필수 패키지 설치
-RUN apt-get update && apt-get install -y wget gnupg2 unzip jq \
-    libx11-xcb1 libxcomposite1 libxcursor1 libxdamage1 libxi6 libxtst6 \
-    libnss3 libxrandr2 libasound2 libpangocairo-1.0-0 libatk1.0-0 libgtk-3-0 \
+RUN apt-get update && apt-get install -y \
+    wget \
+    gnupg2 \
+    unzip \
+    jq \
+    libx11-xcb1 \
+    libxcomposite1 \
+    libxcursor1 \
+    libxdamage1 \
+    libxi6 \
+    libxtst6 \
+    libnss3 \
+    libxrandr2 \
+    libasound2 \
+    libpangocairo-1.0-0 \
+    libatk1.0-0 \
+    libgtk-3-0 \
     libgbm-dev \
     && apt-get clean
 
-# Chrome 설치
+# Google Chrome 설치
 RUN wget -q -O - https://dl.google.com/linux/linux_signing_key.pub | gpg --dearmor -o /usr/share/keyrings/google-chrome.gpg \
     && sh -c 'echo "deb [arch=amd64 signed-by=/usr/share/keyrings/google-chrome.gpg] http://dl.google.com/linux/chrome/deb/ stable main" > /etc/apt/sources.list.d/google-chrome.list' \
     && apt-get update \
@@ -17,11 +32,14 @@ RUN wget -q -O - https://dl.google.com/linux/linux_signing_key.pub | gpg --dearm
 # ChromeDriver 설치 (Chrome for Testing 사용)
 RUN CHROME_VERSION=$(google-chrome --version | cut -d ' ' -f 3) \
     && echo "Using Chrome version: $CHROME_VERSION" \
-    && DRIVER_VERSION=$(curl -sS https://googlechromelabs.github.io/chrome-for-testing/known-good-versions-with-downloads.json | jq -r --arg version "$CHROME_VERSION" '.versions[] | select(.version==$version) | .downloads.chromedriver[] | select(.platform=="linux64").url') \
-    && echo "Using Driver version: $DRIVER_VERSION" \
-    && wget -O /tmp/chromedriver.zip $DRIVER_VERSION \
+    && DRIVER_URL=$(curl -sS https://googlechromelabs.github.io/chrome-for-testing/known-good-versions-with-downloads.json | jq -r --arg version "$CHROME_VERSION" '.versions[] | select(.version==$version) | .downloads.chromedriver[] | select(.platform=="linux64").url') \
+    && echo "Downloading ChromeDriver from: $DRIVER_URL" \
+    && wget -O /tmp/chromedriver.zip $DRIVER_URL \
     && unzip /tmp/chromedriver.zip -d /usr/local/bin/ \
     && rm /tmp/chromedriver.zip
+
+# Chrome 및 ChromeDriver 버전 확인
+RUN google-chrome --version && /usr/local/bin/chromedriver --version
 
 # Selenium 캐시 디렉토리 설정 및 권한 설정
 RUN mkdir -p /app/selenium_cache && chmod -R 777 /app/selenium_cache
