@@ -2,7 +2,7 @@
 FROM python:3.11
 
 # 필수 패키지 설치
-RUN apt-get update && apt-get install -y wget gnupg2 unzip \
+RUN apt-get update && apt-get install -y wget gnupg2 unzip jq \
     libx11-xcb1 libxcomposite1 libxcursor1 libxdamage1 libxi6 libxtst6 \
     libnss3 libxrandr2 libasound2 libpangocairo-1.0-0 libatk1.0-0 libgtk-3-0 \
     libgbm-dev fonts-liberation libappindicator3-1 xdg-utils \
@@ -29,18 +29,16 @@ RUN CHROME_VERSION=$(google-chrome --version | cut -d ' ' -f 3) \
     fi \
     && wget -O /tmp/chromedriver.zip "$DRIVER_URL" \
     && unzip /tmp/chromedriver.zip -d /usr/local/bin/ \
+    && chmod +x /usr/local/bin/chromedriver \
     && rm /tmp/chromedriver.zip
 
-# ChromeDriver에 실행 권한 부여
-RUN chmod +x /usr/local/bin/chromedriver
-
-# Chrome 및 ChromeDriver 권한 설정
-RUN chown -R root:root /opt/google/chrome && \
-    chmod -R 755 /opt/google/chrome
+# 권한 설정
+RUN chmod -R 755 /usr/local/bin/chromedriver && chmod -R 755 /usr/bin/google-chrome
 
 # Python 종속성 설치
 COPY requirements.txt .
 RUN pip install --no-cache-dir -r requirements.txt
+
 
 #PYTHONPATH 설정
 ENV PYTHONPATH=/app
