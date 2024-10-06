@@ -75,7 +75,7 @@ async def get_stadium_name_from_db(stadium_key: str):
                      }
                  }
              }
-             )
+)
 async def baseball_game(request: BaseBallGameRequest):
     collection = db['kbo_all_schedule']
 
