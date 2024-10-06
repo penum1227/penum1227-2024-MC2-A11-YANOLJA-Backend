@@ -35,12 +35,14 @@ def get_chrome_driver():
     os.makedirs(cache_path, exist_ok=True)
     os.environ["SELMEN_CACHE_PATH"] = cache_path
 
-    # Chrome 옵션 설정 (헤드리스 모드 등 추가 설정 필요할 경우)
+    # 크롬 옵션 설정 (헤드리스 모드 및 기타 추가 옵션)
     chrome_options.add_argument("--headless")
     chrome_options.add_argument("--no-sandbox")
     chrome_options.add_argument("--disable-dev-shm-usage")
-    chrome_options.add_argument("--disable-gpu")  # 추가
-    chrome_options.add_argument("--remote-debugging-port=9222")  # 추가
+    chrome_options.add_argument("--disable-gpu")  # 추가된 옵션
+    chrome_options.add_argument("--remote-debugging-port=9222")  # 추가된 옵션
+    chrome_options.add_argument("--disable-software-rasterizer")  # 추가된 옵션
+    chrome_options.add_argument("--disable-setuid-sandbox")  # 추가된 옵션
 
     # Chrome WebDriver 실행
     return webdriver.Chrome(options=chrome_options)
