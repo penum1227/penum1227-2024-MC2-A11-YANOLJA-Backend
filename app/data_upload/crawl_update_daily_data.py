@@ -29,12 +29,11 @@ logger = logging.getLogger(__name__)
 
 def get_chrome_driver():
     chrome_options = Options()
-    chrome_options.add_argument("--headless")
+    chrome_options.add_argument("--headless")  # Chrome을 헤드리스 모드로 실행
     chrome_options.add_argument("--no-sandbox")
     chrome_options.add_argument("--disable-dev-shm-usage")
     chrome_options.add_argument("--disable-gpu")
-    chrome_options.add_argument("--disable-software-rasterizer")
-    chrome_options.add_argument("--window-size=1920x1080")
+    chrome_options.add_argument("--remote-debugging-port=9222")  # 디버깅 포트 열기
     return webdriver.Chrome(options=chrome_options)
 
 # 현재 달의 데이터를 삭제하는 함수
