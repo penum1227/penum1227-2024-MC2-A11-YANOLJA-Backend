@@ -1,7 +1,6 @@
 import logging
 from datetime import datetime
 from selenium import webdriver
-from selenium.webdriver.chrome.options import Options
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.common.exceptions import TimeoutException
@@ -25,37 +24,44 @@ kbo_stadium_data_collection = db['kbo_stadium_data']
 logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)
 
-
-
+# 크롬 옵션 설정 (헤드리스 모드)
 def get_chrome_driver():
+    from selenium.webdriver.chrome.options import Options
     chrome_options = Options()
-    chrome_options.add_argument("--headless")  # Chrome을 헤드리스 모드로 실행
+    chrome_options.add_argument("--headless")
     chrome_options.add_argument("--no-sandbox")
     chrome_options.add_argument("--disable-dev-shm-usage")
-    chrome_options.add_argument("--disable-gpu")
-    chrome_options.add_argument("--remote-debugging-port=9222")  # 디버깅 포트 열기
     return webdriver.Chrome(options=chrome_options)
 
 # 현재 달의 데이터를 삭제하는 함수
 def delete_current_month_data():
+    """
+    MongoDB에서 현재 년도와 월에 해당하는 데이터를 삭제하는 함수
+    """
     now = datetime.now()
     current_year = now.year
-    current_month = now.strftime("%m")
+    current_month = now.strftime("%m")  # 2자리 월
+
+    # 해당 월의 데이터를 삭제
     collection.delete_many({
         "date": {
-            "$regex": f"^{current_year}-{current_month}"
+            "$regex": f"^{current_year}-{current_month}"  # 현재 년-월로 시작하는 날짜
         }
     })
     logger.info(f"{current_year}년 {current_month}월 데이터를 삭제했습니다.")
 
-# 정규 시즌과 포스트 시즌 크롤링 함수
+# 정규 시즌과 포스트 시즌 크롤링을 위한 통합 함수
 def crawl_kbo_schedule(year, month, schedule_type):
+    """
+    정규 시즌과 포스트 시즌 크롤링을 위한 통합 함수.
+    schedule_type에 따라 정규 시즌과 포스트 시즌 URL을 선택.
+    """
     if schedule_type == "regular":
         url = "https://www.koreabaseball.com/Schedule/Schedule.aspx?seriesId=0,9,6"
     else:
         url = "https://www.koreabaseball.com/Schedule/Schedule.aspx?seriesId=3,4,5,7"
 
-    driver = get_chrome_driver()
+    driver = get_chrome_driver()  # 크롬 드라이버 호출
     driver.get(url)
 
     try:
@@ -177,7 +183,7 @@ def save_to_mongodb(data):
     else:
         logger.warning("저장할 데이터가 없습니다.")
 
-# 팀별 승률 크롤링 함수
+# 팀별 승률 크롤링 함수 (기존 함수 사용 가능)
 def crawl_kbo_team_winrate():
     url = "https://www.koreabaseball.com/Record/TeamRank/TeamRankDaily.aspx"
     current_date = datetime.now().strftime("%Y-%m-%d")
@@ -223,8 +229,13 @@ def crawl_kbo_team_winrate():
 def google_sheet_upload():
     sheet_id = settings.google_sheet_id
 
+    # 시트 1 -> team_line 컬렉션에 저장
     update_sheet_to_mongodb(sheet_id, "시트1", "team_line")
+
+    # 시트 2 -> kbo_stadium_data 컬렉션에 저장
     update_sheet_to_mongodb(sheet_id, "시트2", "kbo_stadium_data")
+
+    # 시트 3 -> keep_notice_comment 컬렉션에 저장
     update_sheet_to_mongodb(sheet_id, "시트3", "keep_notice_comment")
 
 # 모든 데이터를 업데이트하는 함수
@@ -233,6 +244,7 @@ def update_all_data():
     current_year = now.year
     current_month = now.strftime("%m")
 
+    # 1. 현재 월의 정규 시즌 및 포스트 시즌 데이터 업데이트
     delete_current_month_data()
     schedule_data = crawl_kbo_schedule(str(current_year), current_month, "regular")
     save_to_mongodb(schedule_data)
@@ -240,15 +252,16 @@ def update_all_data():
     schedule_data = crawl_kbo_schedule(str(current_year), current_month, "postseason")
     save_to_mongodb(schedule_data)
 
-    # 팀별 승률 업데이트
+    # 2. 팀별 승률 업데이트
     crawl_kbo_team_winrate()
 
-    # Google Sheets 데이터 업로드
+    # 3. Google Sheets 데이터 업로드
     google_sheet_upload()
 
 # 스케줄 설정 및 실행 함수
 def run_scheduler():
-    schedule.every(2).minutes.do(update_all_data)
+    schedule.every(1).minutes.do(update_all_data)  # 2분마다 업데이트
+
     while True:
         schedule.run_pending()
         time.sleep(1)
