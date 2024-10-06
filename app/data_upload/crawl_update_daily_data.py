@@ -1,3 +1,4 @@
+import logging
 from datetime import datetime
 from selenium import webdriver
 from selenium.webdriver.common.by import By
@@ -10,12 +11,27 @@ from app.config import settings
 from update_google_sheets_to_mongodb import update_sheet_to_mongodb
 import schedule
 import time
+import gc
 
+# MongoDB 컬렉션 설정
 collection = db['kbo_all_schedule']
 new_collection = db['kbo_team_winrate']
 team_line_collection = db['team_line']
 keep_notice_comment_collection = db['keep_notice_comment']
 kbo_stadium_data_collection = db['kbo_stadium_data']
+
+# 로깅 설정
+logging.basicConfig(level=logging.INFO)
+logger = logging.getLogger(__name__)
+
+# 크롬 옵션 설정 (헤드리스 모드)
+def get_chrome_driver():
+    from selenium.webdriver.chrome.options import Options
+    chrome_options = Options()
+    chrome_options.add_argument("--headless")
+    chrome_options.add_argument("--no-sandbox")
+    chrome_options.add_argument("--disable-dev-shm-usage")
+    return webdriver.Chrome(options=chrome_options)
 
 # 현재 달의 데이터를 삭제하는 함수
 def delete_current_month_data():
@@ -32,8 +48,7 @@ def delete_current_month_data():
             "$regex": f"^{current_year}-{current_month}"  # 현재 년-월로 시작하는 날짜
         }
     })
-    print(f"{current_year}년 {current_month}월 데이터를 삭제했습니다.")
-
+    logger.info(f"{current_year}년 {current_month}월 데이터를 삭제했습니다.")
 
 # 정규 시즌과 포스트 시즌 크롤링을 위한 통합 함수
 def crawl_kbo_schedule(year, month, schedule_type):
@@ -42,15 +57,14 @@ def crawl_kbo_schedule(year, month, schedule_type):
     schedule_type에 따라 정규 시즌과 포스트 시즌 URL을 선택.
     """
     if schedule_type == "regular":
-        url = "https://www.koreabaseball.com/Schedule/Schedule.aspx?seriesId=0,9,6"  # 정규 시즌
+        url = "https://www.koreabaseball.com/Schedule/Schedule.aspx?seriesId=0,9,6"
     else:
-        url = "https://www.koreabaseball.com/Schedule/Schedule.aspx?seriesId=3,4,5,7"  # 포스트 시즌
+        url = "https://www.koreabaseball.com/Schedule/Schedule.aspx?seriesId=3,4,5,7"
 
-    driver = webdriver.Chrome()  # 크롬 드라이버 경로 설정 필요
+    driver = get_chrome_driver()  # 크롬 드라이버 호출
     driver.get(url)
 
     try:
-        # 년도와 월 선택
         WebDriverWait(driver, 10).until(EC.presence_of_element_located((By.ID, "ddlYear")))
         year_dropdown = Select(driver.find_element(By.ID, "ddlYear"))
         year_dropdown.select_by_value(year)
@@ -58,12 +72,10 @@ def crawl_kbo_schedule(year, month, schedule_type):
         month_dropdown = Select(driver.find_element(By.ID, "ddlMonth"))
         month_dropdown.select_by_value(month)
 
-        # 경기 일정 테이블 추출
         WebDriverWait(driver, 10).until(EC.presence_of_element_located((By.CLASS_NAME, "tbl-type06")))
         table = driver.find_element(By.CLASS_NAME, "tbl-type06")
         rows = table.find_elements(By.TAG_NAME, "tr")
 
-        # 데이터를 저장할 리스트
         data_lst = []
         game_data_by_date = {}
 
@@ -78,7 +90,7 @@ def crawl_kbo_schedule(year, month, schedule_type):
                 data.insert(0, previous_date)
 
             if len(data) < 9:
-                print("예상치 못한 데이터 형식:", data)
+                logger.warning(f"Unexpected data format: {data}")
                 continue
 
             raw_date = data[0]
@@ -154,28 +166,29 @@ def crawl_kbo_schedule(year, month, schedule_type):
         return data_lst
 
     except TimeoutException:
-        print(f"{year}년 {month}월에 경기가 없습니다.")
+        logger.error(f"{year}년 {month}월에 경기가 없습니다.")
         return []
 
     finally:
         driver.quit()
 
-
 # MongoDB에 데이터를 저장하는 함수
 def save_to_mongodb(data):
     if data:
         collection.insert_many(data)
-        print("데이터가 MongoDB에 저장되었습니다.")
+        logger.info("데이터가 MongoDB에 저장되었습니다.")
+        # 메모리 정리
+        del data
+        gc.collect()
     else:
-        print("저장할 데이터가 없습니다.")
+        logger.warning("저장할 데이터가 없습니다.")
 
-
-# 정규 시즌 팀별 승률 크롤링 함수
+# 팀별 승률 크롤링 함수 (기존 함수 사용 가능)
 def crawl_kbo_team_winrate():
     url = "https://www.koreabaseball.com/Record/TeamRank/TeamRankDaily.aspx"
     current_date = datetime.now().strftime("%Y-%m-%d")
 
-    driver = webdriver.Chrome()  # 크롬 드라이버 경로 설정 필요
+    driver = get_chrome_driver()
     driver.get(url)
 
     try:
@@ -202,17 +215,15 @@ def crawl_kbo_team_winrate():
 
         if data_lst:
             new_collection.insert_many(data_lst)
-            print(f"팀별 승률 데이터를 {current_date}에 MongoDB에 저장했습니다.")
+            logger.info(f"팀별 승률 데이터를 {current_date}에 MongoDB에 저장했습니다.")
         else:
-            print("저장할 데이터가 없습니다.")
+            logger.warning("저장할 데이터가 없습니다.")
 
     except Exception as e:
-        print(f"크롤링 중 오류 발생: {e}")
+        logger.error(f"크롤링 중 오류 발생: {e}")
 
     finally:
         driver.quit()
-
-
 
 # 기존 시트 데이터 업로드하는 메인 함수
 def google_sheet_upload():
@@ -227,7 +238,6 @@ def google_sheet_upload():
     # 시트 3 -> keep_notice_comment 컬렉션에 저장
     update_sheet_to_mongodb(sheet_id, "시트3", "keep_notice_comment")
 
-
 # 모든 데이터를 업데이트하는 함수
 def update_all_data():
     now = datetime.now()
@@ -236,37 +246,41 @@ def update_all_data():
 
     # 1. 현재 월의 정규 시즌 및 포스트 시즌 데이터 업데이트
     delete_current_month_data()
-    print(f"{current_year}년 {current_month}월 정규 시즌 데이터를 수집합니다.")
     schedule_data = crawl_kbo_schedule(str(current_year), current_month, "regular")
     save_to_mongodb(schedule_data)
 
-    print(f"{current_year}년 {current_month}월 포스트 시즌 데이터를 수집합니다.")
     schedule_data = crawl_kbo_schedule(str(current_year), current_month, "postseason")
     save_to_mongodb(schedule_data)
 
-    # 2. 팀별 승률 데이터 업데이트
+    # 2. 팀별 승률 업데이트
     crawl_kbo_team_winrate()
 
-    # 3. 시트 1, 2, 3 데이터를 업데이트
+    # 3. Google Sheets 데이터 업로드
     google_sheet_upload()
 
+# 스케줄 설정 및 실행 함수
+def run_scheduler():
+    #실험 2분마다 업데이트
+    #schedule.every(2).minutes.do(update_all_data)
+    # 스케줄 설정 (설정한 시간대마다 update_all_data 실행)
+    schedule.every().day.at("14:00").do(update_all_data)
+    schedule.every().day.at("17:00").do(update_all_data)
+    schedule.every().day.at("17:15").do(update_all_data)
+    schedule.every().day.at("17:30").do(update_all_data)
+    schedule.every().day.at("18:00").do(update_all_data)
+    schedule.every().day.at("18:30").do(update_all_data)
+    schedule.every().day.at("21:15").do(update_all_data)
+    schedule.every().day.at("21:30").do(update_all_data)
+    schedule.every().day.at("21:45").do(update_all_data)
+    schedule.every().day.at("22:10").do(update_all_data)
+    while True:
+        schedule.run_pending()
+        time.sleep(1)
 
-# 스케줄 설정 (설정한 시간대마다 update_all_data 실행)
-# schedule.every().day.at("14:00").do(update_all_data)
-# schedule.every().day.at("17:00").do(update_all_data)
-# schedule.every().day.at("17:15").do(update_all_data)
-# schedule.every().day.at("17:30").do(update_all_data)
-# schedule.every().day.at("18:00").do(update_all_data)
-# schedule.every().day.at("18:30").do(update_all_data)
-# schedule.every().day.at("21:15").do(update_all_data)
-# schedule.every().day.at("21:30").do(update_all_data)
-# schedule.every().day.at("21:45").do(update_all_data)
-# schedule.every().day.at("22:10").do(update_all_data)
+# 스케줄러 실행
+if __name__ == "__main__":
+    run_scheduler()
 
-# 실험용 1분마다 실행 (원하는 경우)
-schedule.every(2).minutes.do(update_all_data)
 
-# 스케줄러가 실행되도록 루프
-while True:
-    schedule.run_pending()
-    time.sleep(1)
+
+
