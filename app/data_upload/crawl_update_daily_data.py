@@ -27,25 +27,23 @@ logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)
 
 
-
-
 def get_chrome_driver():
     chrome_options = webdriver.ChromeOptions()
 
     # 크롬 옵션 설정 (헤드리스 모드 및 기타 추가 옵션)
     chrome_options.add_argument("--headless")
     chrome_options.add_argument("--no-sandbox")
-    chrome_options.add_argument("--disable-dev-shm-usage")
+    chrome_options.add_argument("--disable-dev-shm-usage")  # dev/shm을 사용하지 않도록 설정
     chrome_options.add_argument("--disable-gpu")
     chrome_options.add_argument("--remote-debugging-port=9222")
     chrome_options.add_argument("--disable-software-rasterizer")
     chrome_options.add_argument("--disable-setuid-sandbox")
 
-    service = Service("/usr/local/bin/chromedriver", service_args=["--verbose", "--log-path=/tmp/chromedriver.log"])
+    # User data 및 임시 파일 경로 설정 (권한 문제 해결 시도)
+    chrome_options.add_argument("--user-data-dir=/tmp/chrome-user-data")
+    chrome_options.add_argument("--homedir=/tmp")
 
-    return webdriver.Chrome(service=service, options=chrome_options)
-
-
+    return webdriver.Chrome(options=chrome_options)
 
 
 # 현재 달의 데이터를 삭제하는 함수

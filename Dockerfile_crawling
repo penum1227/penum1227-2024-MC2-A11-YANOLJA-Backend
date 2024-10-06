@@ -38,7 +38,7 @@ RUN set -x \
     && rm /tmp/chromedriver.zip
 
 # 권한 설정
-RUN chmod -R 755 /usr/local/bin/chromedriver && chmod -R 755 /usr/bin/google-chrome
+RUN chmod -R 755 /opt/google/chrome && chmod -R 755 /usr/local/bin/chromedriver
 
 # Python 종속성 설치
 COPY requirements.txt .
