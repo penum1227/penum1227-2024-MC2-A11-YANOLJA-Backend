@@ -40,6 +40,11 @@ def get_chrome_driver():
     chrome_options.add_argument("--disable-software-rasterizer")
     chrome_options.add_argument("--disable-setuid-sandbox")
 
+    # WebDriverManager의 캐시 경로를 쓰기 가능한 디렉토리로 설정
+    cache_path = "/tmp/.wdm"
+    os.makedirs(cache_path, exist_ok=True)
+    os.environ["WDM_CACHE"] = cache_path  # WebDriver Manager 캐시 경로 설정
+
     # WebDriverManager를 사용해 ChromeDriver를 설치 및 실행
     return webdriver.Chrome(service=Service(ChromeDriverManager().install()), options=chrome_options)
 
