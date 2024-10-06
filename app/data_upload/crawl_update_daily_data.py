@@ -3,6 +3,7 @@ from datetime import datetime
 from selenium import webdriver
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import WebDriverWait
+from selenium.webdriver.chrome.options import Options
 from selenium.common.exceptions import TimeoutException
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.support.ui import Select
@@ -26,14 +27,16 @@ logger = logging.getLogger(__name__)
 
 # 크롬 옵션 설정 (헤드리스 모드)
 def get_chrome_driver():
-    from selenium.webdriver.chrome.options import Options
     chrome_options = Options()
     chrome_options.add_argument("--headless")
     chrome_options.add_argument("--no-sandbox")
     chrome_options.add_argument("--disable-dev-shm-usage")
-    chrome_options.add_argument("--disable-gpu")  # GPU 비활성화 옵션 추가
-    chrome_options.add_argument("--disable-software-rasterizer")  # 소프트웨어 렌더링 비활성화 옵션 추가
+    chrome_options.add_argument("--disable-gpu")  # GPU 비활성화
+    chrome_options.add_argument("--disable-software-rasterizer")  # 소프트웨어 렌더링 비활성화
+    chrome_options.add_argument("--remote-debugging-port=9222")  # DevTools 포트 활성화
+    chrome_options.add_argument("--window-size=1920x1080")  # 창 크기 설정
     return webdriver.Chrome(options=chrome_options)
+
 
 
 # 현재 달의 데이터를 삭제하는 함수

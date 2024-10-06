@@ -17,8 +17,8 @@ RUN LATEST_CHROMEDRIVER_VERSION=$(curl -s https://chromedriver.storage.googleapi
     && unzip /tmp/chromedriver.zip -d /usr/local/bin/ \
     && rm /tmp/chromedriver.zip
 
-# Selenium의 cache 폴더 권한 문제 해결
-RUN mkdir -p /app/.cache/selenium && chmod -R 777 /app/.cache/selenium
+# Selenium의 cache 폴더 권한 문제 해결 (경로 변경)
+RUN mkdir -p /root/.cache/selenium && chmod -R 777 /root/.cache/selenium
 
 # Python 종속성 설치
 COPY requirements.txt .
