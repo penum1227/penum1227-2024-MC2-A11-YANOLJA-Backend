@@ -1,20 +1,20 @@
 FROM python:3.11
 
 # 필수 패키지 설치
-RUN apt-get update && apt-get install -y wget gnupg2 unzip \
+RUN apt-get update && apt-get install -y wget gnupg2 unzip jq curl \
     libx11-xcb1 libxcomposite1 libxcursor1 libxdamage1 libxi6 libxtst6 \
     libnss3 libxrandr2 libasound2 libpangocairo-1.0-0 libatk1.0-0 libgtk-3-0 \
     libgbm-dev fonts-liberation libappindicator3-1 xdg-utils \
     && apt-get clean
 
-# Chrome 설치
+# Google Chrome 설치
 RUN wget -q -O - https://dl.google.com/linux/linux_signing_key.pub | gpg --dearmor -o /usr/share/keyrings/google-chrome.gpg \
     && sh -c 'echo "deb [arch=amd64 signed-by=/usr/share/keyrings/google-chrome.gpg] http://dl.google.com/linux/chrome/deb/ stable main" > /etc/apt/sources.list.d/google-chrome.list' \
     && apt-get update \
     && apt-get install -y google-chrome-stable \
     && apt-get clean
 
-# Chrome 실행 경로를 /usr/bin/google-chrome 으로 설정
+# Chrome 실행 경로 및 권한 설정
 ENV CHROME_BIN=/usr/bin/google-chrome
 ENV CHROME_DRIVER=/usr/local/bin/chromedriver
 
@@ -30,30 +30,31 @@ RUN CHROME_VERSION=$(google-chrome --version | cut -d ' ' -f 3) \
     && unzip /tmp/chromedriver.zip -d /usr/local/bin/ \
     && rm /tmp/chromedriver.zip
 
-# 강력한 권한을 부여한 Chrome 실행 옵션 추가
-RUN echo '#!/bin/bash\n\
-exec /usr/bin/google-chrome \
-    --no-sandbox \
-    --disable-dev-shm-usage \
-    --disable-gpu \
-    --disable-software-rasterizer \
-    --headless \
-    --remote-debugging-port=9222 \
-    --disable-setuid-sandbox \
-    "$@"' > /usr/bin/chrome-wrapper && chmod +x /usr/bin/chrome-wrapper
+# Chrome을 루트가 아닌 일반 사용자로 실행하기 위한 유저 설정
+RUN useradd -m chromeuser && mkdir -p /home/chromeuser && chown -R chromeuser:chromeuser /home/chromeuser
+
+# /dev/shm 디렉토리 설정 (공유 메모리 이슈 해결)
+RUN mkdir -p /dev/shm && chmod 1777 /dev/shm
+
+# Chrome 실행시 필요한 권한을 추가 (샌드박스 및 shm 사용 비활성화)
+ENV CHROME_OPTS="--no-sandbox --disable-dev-shm-usage --headless --disable-gpu --disable-software-rasterizer --remote-debugging-port=9222 --disable-setuid-sandbox"
+
+# Selenium 캐시 디렉토리 설정 및 권한 설정
+RUN mkdir -p /app/selenium_cache && chmod -R 777 /app/selenium_cache
+RUN mkdir -p /.cache/selenium && chmod -R 777 /.cache/selenium
+
+# 작업 디렉토리 설정
+WORKDIR /app
 
 # Python 종속성 설치
 COPY requirements.txt .
 RUN pip install --no-cache-dir -r requirements.txt
 
-# 작업 디렉토리 설정
-WORKDIR /app
+# 일반 유저로 실행
+USER chromeuser
 
 # 프로젝트 파일 복사
 COPY . .
-
-# Chrome과 ChromeDriver의 권한 확인 (디버깅용)
-RUN ls -l /usr/bin/google-chrome && ls -l /usr/local/bin/chromedriver
 
 # 스크립트 실행
 CMD ["python3", "/app/app/data_upload/crawl_update_daily_data.py"]
