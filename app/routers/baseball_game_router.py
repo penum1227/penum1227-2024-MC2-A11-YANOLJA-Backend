@@ -115,8 +115,8 @@ async def baseball_game(request: BaseBallGameRequest):
         return JSONResponse(
             status_code=404,
             content=Response(
-                isSuccess=False,
-                code="404",
+                isSuccess=True,
+                code="200",
                 message="해당 날짜에 경기를 찾을 수 없습니다.",
                 result=[]
             ).dict()

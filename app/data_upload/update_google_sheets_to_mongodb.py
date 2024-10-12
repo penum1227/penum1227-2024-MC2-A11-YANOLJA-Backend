@@ -53,6 +53,7 @@ def main():
     # 시트 1 -> team_line 컬렉션에 저장
     update_sheet_to_mongodb(sheet_id, "시트1", "team_line")
 
+
     # 시트 2 -> kbo_stadium_data 컬렉션에 저장
     update_sheet_to_mongodb(sheet_id, "시트2", "kbo_stadium_data")
 
