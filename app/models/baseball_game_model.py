@@ -12,4 +12,4 @@ class BaseballGameModel(BaseModel):
     cancelReason: str
     doubleHeaderGameOrder: int
 
-VALID_TEAMS = ["LG", "두산", "키움", "한화", "KT", "SSG", "KIA", "NC", "삼성", "롯데"]
+VALID_TEAMS = ["LG", "두산", "키움", "한화", "KT", "SSG", "KIA", "NC", "삼성", "롯데", "무직"]

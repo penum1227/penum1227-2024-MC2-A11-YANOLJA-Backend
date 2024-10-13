@@ -62,12 +62,12 @@ async def get_stadium_name_from_db(stadium_key: str):
                          "application/json": ErrorResponseExample_400
                      }
                  },
-                 404: {
-                     "description": "경기를 찾을 수 없음",
-                     "content": {
-                         "application/json": ErrorResponseExample_404
-                     }
-                 },
+                 # 404: {
+                 #     "description": "경기를 찾을 수 없음",
+                 #     "content": {
+                 #         "application/json": ErrorResponseExample_404
+                 #     }
+                 # },
                  422: {
                      "description": "잘못된 요청 데이터 (유효성 검사 실패)",
                      "content": {
@@ -113,7 +113,7 @@ async def baseball_game(request: BaseBallGameRequest):
     # 경기가 존재하지 않으면 404 에러 반환
     if not games_list:
         return JSONResponse(
-            status_code=404,
+            status_code=200,
             content=Response(
                 isSuccess=True,
                 code="200",
