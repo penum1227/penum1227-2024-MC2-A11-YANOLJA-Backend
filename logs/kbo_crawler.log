@@ -1,0 +1,218 @@
+2025-01-31 23:00:11,639 - kbo_crawler - INFO - MongoDB 인덱스 설정 완료
+2025-01-31 23:00:11,639 - kbo_crawler - INFO - 당일 데이터 업데이트 시작
+2025-01-31 23:00:11,649 - kbo_crawler - INFO - 2025-01-31의 0개 데이터를 삭제했습니다.
+2025-01-31 23:00:11,650 - kbo_crawler - INFO - Trial 시즌 데이터 크롤링 시작
+2025-01-31 23:00:11,650 - kbo_crawler - INFO - 2025-01-31 ~ 2025-01-31 trial 시즌 데이터 크롤링 시작
+2025-01-31 23:00:12,165 - kbo_crawler - INFO - 접속 중: https://www.koreabaseball.com/Schedule/Schedule.aspx?seriesId=1
+2025-01-31 23:00:43,091 - kbo_crawler - WARNING - 2025년 1월 trial 시즌 선택 불가: Page.select_option: Timeout 30000ms exceeded.
+Call log:
+  - waiting for locator("#ddlYear")
+  -     - locator resolved to <select id="ddlYear">…</select>
+  -   - attempting select option action
+  -     2 × waiting for element to be visible and enabled
+  -       - did not find some options
+  -     - retrying select option action
+  -     - waiting 20ms
+  -     2 × waiting for element to be visible and enabled
+  -       - did not find some options
+  -     - retrying select option action
+  -       - waiting 100ms
+  -     58 × waiting for element to be visible and enabled
+  -        - did not find some options
+  -      - retrying select option action
+  -        - waiting 500ms
+
+2025-01-31 23:00:43,148 - kbo_crawler - INFO - 2025-01-31 ~ 2025-01-31 trial 시즌 데이터 크롤링 완료
+2025-01-31 23:00:43,148 - kbo_crawler - WARNING - Trial 시즌에 저장할 데이터가 없습니다.
+2025-01-31 23:00:43,148 - kbo_crawler - INFO - Regular 시즌 데이터 크롤링 시작
+2025-01-31 23:00:43,149 - kbo_crawler - INFO - 2025-01-31 ~ 2025-01-31 regular 시즌 데이터 크롤링 시작
+2025-01-31 23:00:43,613 - kbo_crawler - INFO - 접속 중: https://www.koreabaseball.com/Schedule/Schedule.aspx?seriesId=0
+2025-01-31 23:00:44,687 - kbo_crawler - INFO - 선택된 연도: 2025, 선택된 월: 01 (regular 시즌)
+2025-01-31 23:00:44,698 - kbo_crawler - INFO - 2025년 1월 regular 시즌 테이블 로드 완료
+2025-01-31 23:00:44,731 - kbo_crawler - WARNING - 예상치 못한 데이터 형식: ['데이터가 없습니다.']
+2025-01-31 23:00:44,731 - kbo_crawler - INFO - 접속 중: https://www.koreabaseball.com/Schedule/Schedule.aspx?seriesId=9
+2025-01-31 23:01:15,122 - kbo_crawler - WARNING - 2025년 1월 regular 시즌 선택 불가: Page.select_option: Timeout 30000ms exceeded.
+Call log:
+  - waiting for locator("#ddlYear")
+  -     - locator resolved to <select id="ddlYear">…</select>
+  -   - attempting select option action
+  -     2 × waiting for element to be visible and enabled
+  -       - did not find some options
+  -     - retrying select option action
+  -     - waiting 20ms
+  -     2 × waiting for element to be visible and enabled
+  -       - did not find some options
+  -     - retrying select option action
+  -       - waiting 100ms
+  -     58 × waiting for element to be visible and enabled
+  -        - did not find some options
+  -      - retrying select option action
+  -        - waiting 500ms
+
+2025-01-31 23:01:15,124 - kbo_crawler - INFO - 접속 중: https://www.koreabaseball.com/Schedule/Schedule.aspx?seriesId=6
+2025-01-31 23:01:45,540 - kbo_crawler - WARNING - 2025년 1월 regular 시즌 선택 불가: Page.select_option: Timeout 30000ms exceeded.
+Call log:
+  - waiting for locator("#ddlYear")
+  -     - locator resolved to <select id="ddlYear">…</select>
+  -   - attempting select option action
+  -     2 × waiting for element to be visible and enabled
+  -       - did not find some options
+  -     - retrying select option action
+  -     - waiting 20ms
+  -     2 × waiting for element to be visible and enabled
+  -       - did not find some options
+  -     - retrying select option action
+  -       - waiting 100ms
+  -     59 × waiting for element to be visible and enabled
+  -        - did not find some options
+  -      - retrying select option action
+  -        - waiting 500ms
+
+2025-01-31 23:01:45,592 - kbo_crawler - INFO - 2025-01-31 ~ 2025-01-31 regular 시즌 데이터 크롤링 완료
+2025-01-31 23:01:45,592 - kbo_crawler - WARNING - Regular 시즌에 저장할 데이터가 없습니다.
+2025-01-31 23:01:45,592 - kbo_crawler - INFO - Postseason 시즌 데이터 크롤링 시작
+2025-01-31 23:01:45,593 - kbo_crawler - INFO - 2025-01-31 ~ 2025-01-31 postseason 시즌 데이터 크롤링 시작
+2025-01-31 23:01:46,054 - kbo_crawler - INFO - 접속 중: https://www.koreabaseball.com/Schedule/Schedule.aspx?seriesId=3
+2025-01-31 23:02:16,875 - kbo_crawler - WARNING - 2025년 1월 postseason 시즌 선택 불가: Page.select_option: Timeout 30000ms exceeded.
+Call log:
+  - waiting for locator("#ddlYear")
+  -     - locator resolved to <select id="ddlYear">…</select>
+  -   - attempting select option action
+  -     2 × waiting for element to be visible and enabled
+  -       - did not find some options
+  -     - retrying select option action
+  -     - waiting 20ms
+  -     2 × waiting for element to be visible and enabled
+  -       - did not find some options
+  -     - retrying select option action
+  -       - waiting 100ms
+  -     58 × waiting for element to be visible and enabled
+  -        - did not find some options
+  -      - retrying select option action
+  -        - waiting 500ms
+
+2025-01-31 23:02:16,876 - kbo_crawler - INFO - 접속 중: https://www.koreabaseball.com/Schedule/Schedule.aspx?seriesId=4
+2025-01-31 23:02:47,296 - kbo_crawler - WARNING - 2025년 1월 postseason 시즌 선택 불가: Page.select_option: Timeout 30000ms exceeded.
+Call log:
+  - waiting for locator("#ddlYear")
+  -     - locator resolved to <select id="ddlYear">…</select>
+  -   - attempting select option action
+  -     2 × waiting for element to be visible and enabled
+  -       - did not find some options
+  -     - retrying select option action
+  -     - waiting 20ms
+  -     2 × waiting for element to be visible and enabled
+  -       - did not find some options
+  -     - retrying select option action
+  -       - waiting 100ms
+  -     58 × waiting for element to be visible and enabled
+  -        - did not find some options
+  -      - retrying select option action
+  -        - waiting 500ms
+
+2025-01-31 23:02:47,297 - kbo_crawler - INFO - 접속 중: https://www.koreabaseball.com/Schedule/Schedule.aspx?seriesId=5
+2025-01-31 23:03:17,723 - kbo_crawler - WARNING - 2025년 1월 postseason 시즌 선택 불가: Page.select_option: Timeout 30000ms exceeded.
+Call log:
+  - waiting for locator("#ddlYear")
+  -     - locator resolved to <select id="ddlYear">…</select>
+  -   - attempting select option action
+  -     2 × waiting for element to be visible and enabled
+  -       - did not find some options
+  -     - retrying select option action
+  -     - waiting 20ms
+  -     2 × waiting for element to be visible and enabled
+  -       - did not find some options
+  -     - retrying select option action
+  -       - waiting 100ms
+  -     58 × waiting for element to be visible and enabled
+  -        - did not find some options
+  -      - retrying select option action
+  -        - waiting 500ms
+
+2025-01-31 23:03:17,725 - kbo_crawler - INFO - 접속 중: https://www.koreabaseball.com/Schedule/Schedule.aspx?seriesId=7
+2025-01-31 23:03:48,154 - kbo_crawler - WARNING - 2025년 1월 postseason 시즌 선택 불가: Page.select_option: Timeout 30000ms exceeded.
+Call log:
+  - waiting for locator("#ddlYear")
+  -     - locator resolved to <select id="ddlYear">…</select>
+  -   - attempting select option action
+  -     2 × waiting for element to be visible and enabled
+  -       - did not find some options
+  -     - retrying select option action
+  -     - waiting 20ms
+  -     2 × waiting for element to be visible and enabled
+  -       - did not find some options
+  -     - retrying select option action
+  -       - waiting 100ms
+  -     58 × waiting for element to be visible and enabled
+  -        - did not find some options
+  -      - retrying select option action
+  -        - waiting 500ms
+
+2025-01-31 23:03:48,210 - kbo_crawler - INFO - 2025-01-31 ~ 2025-01-31 postseason 시즌 데이터 크롤링 완료
+2025-01-31 23:03:48,210 - kbo_crawler - WARNING - Postseason 시즌에 저장할 데이터가 없습니다.
+2025-01-31 23:03:48,210 - kbo_crawler - INFO - 팀별 승률 크롤링 시작
+2025-01-31 23:03:49,584 - kbo_crawler - INFO - 팀별 승률 테이블 로드 완료
+2025-01-31 23:03:50,020 - kbo_crawler - INFO - 팀별 승률 크롤링 완료
+2025-01-31 23:03:50,101 - kbo_crawler - INFO - 팀별 승률 데이터를 MongoDB에 저장했습니다.
+2025-01-31 23:03:50,102 - kbo_crawler - ERROR - Google Sheets 데이터 업로드 중 오류 발생: 'Settings' object has no attribute 'GOOGLE_SHEET_ID'
+2025-01-31 23:03:50,142 - kbo_crawler - INFO - 당일 데이터 업데이트 완료
+2025-01-31 23:05:15,575 - kbo_crawler - INFO - MongoDB 인덱스 설정 완료
+2025-01-31 23:05:15,576 - kbo_crawler - INFO - 당일 데이터 업데이트 시작
+2025-01-31 23:05:15,585 - kbo_crawler - INFO - 2025-01-31의 0개 데이터를 삭제했습니다.
+2025-01-31 23:05:15,586 - kbo_crawler - INFO - Trial 시즌 데이터 크롤링 시작
+2025-01-31 23:05:15,586 - kbo_crawler - INFO - 2025-01-31 ~ 2025-01-31 trial 시즌 데이터 크롤링 시작
+2025-01-31 23:05:15,586 - kbo_crawler - INFO - 접속 중: https://www.koreabaseball.com/Schedule/Schedule.aspx?seriesId=1
+2025-01-31 23:05:46,988 - kbo_crawler - WARNING - 2025년 1월 trial 시즌 선택 불가: Page.select_option: Timeout 30000ms exceeded.
+Call log:
+  - waiting for locator("#ddlYear")
+  -     - locator resolved to <select id="ddlYear">…</select>
+  -   - attempting select option action
+  -     2 × waiting for element to be visible and enabled
+  -       - did not find some options
+  -     - retrying select option action
+  -     - waiting 20ms
+  -     2 × waiting for element to be visible and enabled
+  -       - did not find some options
+  -     - retrying select option action
+  -       - waiting 100ms
+  -     59 × waiting for element to be visible and enabled
+  -        - did not find some options
+  -      - retrying select option action
+  -        - waiting 500ms
+
+2025-01-31 23:05:47,051 - kbo_crawler - WARNING - Trial 시즌에 저장할 데이터가 없습니다.
+2025-01-31 23:05:47,052 - kbo_crawler - INFO - Regular 시즌 데이터 크롤링 시작
+2025-01-31 23:05:47,052 - kbo_crawler - INFO - 2025-01-31 ~ 2025-01-31 regular 시즌 데이터 크롤링 시작
+2025-01-31 23:05:47,052 - kbo_crawler - INFO - 접속 중: https://www.koreabaseball.com/Schedule/Schedule.aspx?seriesId=0,9,6
+2025-01-31 23:05:48,663 - kbo_crawler - INFO - 선택된 연도: 2025, 선택된 월: 01 (regular 시즌)
+2025-01-31 23:05:48,674 - kbo_crawler - INFO - 2025년 1월 regular 시즌 테이블 로드 완료
+2025-01-31 23:05:48,707 - kbo_crawler - WARNING - 예상치 못한 데이터 형식: ['데이터가 없습니다.']
+2025-01-31 23:05:48,855 - kbo_crawler - INFO - 2025-01-31 ~ 2025-01-31 regular 시즌 데이터 크롤링 완료
+2025-01-31 23:05:48,855 - kbo_crawler - WARNING - Regular 시즌에 저장할 데이터가 없습니다.
+2025-01-31 23:05:48,855 - kbo_crawler - INFO - Postseason 시즌 데이터 크롤링 시작
+2025-01-31 23:05:48,856 - kbo_crawler - INFO - 2025-01-31 ~ 2025-01-31 postseason 시즌 데이터 크롤링 시작
+2025-01-31 23:05:48,856 - kbo_crawler - INFO - 접속 중: https://www.koreabaseball.com/Schedule/Schedule.aspx?seriesId=3,4,5,7
+2025-01-31 23:06:20,089 - kbo_crawler - WARNING - 2025년 1월 postseason 시즌 선택 불가: Page.select_option: Timeout 30000ms exceeded.
+Call log:
+  - waiting for locator("#ddlYear")
+  -     - locator resolved to <select id="ddlYear">…</select>
+  -   - attempting select option action
+  -     2 × waiting for element to be visible and enabled
+  -       - did not find some options
+  -     - retrying select option action
+  -     - waiting 20ms
+  -     2 × waiting for element to be visible and enabled
+  -       - did not find some options
+  -     - retrying select option action
+  -       - waiting 100ms
+  -     58 × waiting for element to be visible and enabled
+  -        - did not find some options
+  -      - retrying select option action
+  -        - waiting 500ms
+
+2025-01-31 23:06:20,140 - kbo_crawler - WARNING - Postseason 시즌에 저장할 데이터가 없습니다.
+2025-01-31 23:06:20,141 - kbo_crawler - INFO - 팀별 승률 크롤링 시작
+2025-01-31 23:06:21,506 - kbo_crawler - INFO - 팀별 승률 테이블 로드 완료
+2025-01-31 23:06:21,936 - kbo_crawler - INFO - 팀별 승률 크롤링 완료
+2025-01-31 23:06:22,012 - kbo_crawler - INFO - 팀별 승률 데이터를 MongoDB에 저장했습니다.
+2025-01-31 23:06:24,064 - kbo_crawler - INFO - 당일 데이터 업데이트 완료

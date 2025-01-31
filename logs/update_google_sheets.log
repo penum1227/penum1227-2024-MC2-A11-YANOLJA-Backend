@@ -1,0 +1,12 @@
+2025-01-31 23:03:50,102 - update_google_sheets - INFO - Google Sheets 데이터를 MongoDB로 업로드 시작
+2025-01-31 23:06:22,013 - update_google_sheets - INFO - Google Sheets 데이터를 MongoDB로 업로드 시작
+2025-01-31 23:06:22,897 - update_google_sheets - INFO - Successfully fetched CSV from sheet: 시트1
+2025-01-31 23:06:22,898 - update_google_sheets - INFO - CSV data fetched successfully from 시트1.
+2025-01-31 23:06:22,942 - update_google_sheets - INFO - Data successfully uploaded to MongoDB in collection: team_line
+2025-01-31 23:06:23,456 - update_google_sheets - INFO - Successfully fetched CSV from sheet: 시트2
+2025-01-31 23:06:23,458 - update_google_sheets - INFO - CSV data fetched successfully from 시트2.
+2025-01-31 23:06:23,494 - update_google_sheets - INFO - Data successfully uploaded to MongoDB in collection: kbo_stadium_data
+2025-01-31 23:06:23,990 - update_google_sheets - INFO - Successfully fetched CSV from sheet: 시트3
+2025-01-31 23:06:23,991 - update_google_sheets - INFO - CSV data fetched successfully from 시트3.
+2025-01-31 23:06:24,022 - update_google_sheets - INFO - Data successfully uploaded to MongoDB in collection: keep_notice_comment
+2025-01-31 23:06:24,022 - update_google_sheets - INFO - Google Sheets 데이터를 MongoDB로 업로드 완료

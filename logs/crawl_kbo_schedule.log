@@ -1,0 +1,289 @@
+2025-01-31 23:10:26,514 - crawl_kbo_schedule - INFO - === Regular 시즌, 2018년 1월 데이터 삭제 및 업데이트 시작 ===
+2025-01-31 23:10:26,809 - crawl_kbo_schedule - INFO - 2018년 01월 regular 시즌의 0개 데이터를 삭제했습니다.
+2025-01-31 23:10:26,809 - crawl_kbo_schedule - INFO - 크롤링 기간: 2018-01-01 ~ 2018-01-31
+2025-01-31 23:10:26,810 - crawl_kbo_schedule - INFO - 2018-01-01 ~ 2018-01-31 regular 시즌 데이터 크롤링 시작
+2025-01-31 23:10:26,810 - crawl_kbo_schedule - INFO - 접속 중: https://www.koreabaseball.com/Schedule/Schedule.aspx?seriesId=0,9,6
+2025-01-31 23:10:28,516 - crawl_kbo_schedule - INFO - 선택된 연도: 2018, 선택된 월: 01 (regular 시즌)
+2025-01-31 23:10:28,525 - crawl_kbo_schedule - INFO - 2018년 1월 regular 시즌 테이블 로드 완료
+2025-01-31 23:10:28,553 - crawl_kbo_schedule - WARNING - 예상치 못한 데이터 형식: ['데이터가 없습니다.']
+2025-01-31 23:10:28,597 - crawl_kbo_schedule - INFO - 2018-01-01 ~ 2018-01-31 regular 시즌 데이터 크롤링 완료
+2025-01-31 23:10:28,597 - crawl_kbo_schedule - WARNING - 2018년 01월 regular 시즌에 저장할 데이터가 없습니다.
+2025-01-31 23:10:28,597 - crawl_kbo_schedule - INFO - === Regular 시즌, 2018년 3월 데이터 삭제 및 업데이트 시작 ===
+2025-01-31 23:10:28,614 - crawl_kbo_schedule - INFO - 2018년 03월 regular 시즌의 35개 데이터를 삭제했습니다.
+2025-01-31 23:10:28,614 - crawl_kbo_schedule - INFO - 크롤링 기간: 2018-03-01 ~ 2018-03-31
+2025-01-31 23:10:28,614 - crawl_kbo_schedule - INFO - 2018-03-01 ~ 2018-03-31 regular 시즌 데이터 크롤링 시작
+2025-01-31 23:10:28,615 - crawl_kbo_schedule - INFO - 접속 중: https://www.koreabaseball.com/Schedule/Schedule.aspx?seriesId=0,9,6
+2025-01-31 23:10:30,302 - crawl_kbo_schedule - INFO - 선택된 연도: 2018, 선택된 월: 03 (regular 시즌)
+2025-01-31 23:10:30,312 - crawl_kbo_schedule - INFO - 2018년 3월 regular 시즌 테이블 로드 완료
+2025-01-31 23:10:31,694 - crawl_kbo_schedule - INFO - 2018-03-01 ~ 2018-03-31 regular 시즌 데이터 크롤링 완료
+2025-01-31 23:10:31,716 - crawl_kbo_schedule - INFO - 2018년 03월 regular 시즌 데이터를 MongoDB에 저장했습니다.
+2025-01-31 23:10:31,717 - crawl_kbo_schedule - INFO - === Regular 시즌, 2018년 5월 데이터 삭제 및 업데이트 시작 ===
+2025-01-31 23:10:31,760 - crawl_kbo_schedule - INFO - 2018년 05월 regular 시즌의 135개 데이터를 삭제했습니다.
+2025-01-31 23:10:31,760 - crawl_kbo_schedule - INFO - 크롤링 기간: 2018-05-01 ~ 2018-05-31
+2025-01-31 23:10:31,760 - crawl_kbo_schedule - INFO - 2018-05-01 ~ 2018-05-31 regular 시즌 데이터 크롤링 시작
+2025-01-31 23:10:31,760 - crawl_kbo_schedule - INFO - 접속 중: https://www.koreabaseball.com/Schedule/Schedule.aspx?seriesId=0,9,6
+2025-01-31 23:10:33,736 - crawl_kbo_schedule - INFO - 선택된 연도: 2018, 선택된 월: 05 (regular 시즌)
+2025-01-31 23:10:33,773 - crawl_kbo_schedule - INFO - 2018년 5월 regular 시즌 테이블 로드 완료
+2025-01-31 23:10:38,859 - crawl_kbo_schedule - INFO - 2018-05-01 ~ 2018-05-31 regular 시즌 데이터 크롤링 완료
+2025-01-31 23:10:39,895 - crawl_kbo_schedule - INFO - 2018년 05월 regular 시즌 데이터를 MongoDB에 저장했습니다.
+2025-01-31 23:10:39,895 - crawl_kbo_schedule - INFO - === Regular 시즌, 2018년 6월 데이터 삭제 및 업데이트 시작 ===
+2025-01-31 23:10:39,942 - crawl_kbo_schedule - INFO - 2018년 06월 regular 시즌의 130개 데이터를 삭제했습니다.
+2025-01-31 23:10:39,942 - crawl_kbo_schedule - INFO - 크롤링 기간: 2018-06-01 ~ 2018-06-30
+2025-01-31 23:10:39,942 - crawl_kbo_schedule - INFO - 2018-06-01 ~ 2018-06-30 regular 시즌 데이터 크롤링 시작
+2025-01-31 23:10:39,943 - crawl_kbo_schedule - INFO - 접속 중: https://www.koreabaseball.com/Schedule/Schedule.aspx?seriesId=0,9,6
+2025-01-31 23:10:41,722 - crawl_kbo_schedule - INFO - 선택된 연도: 2018, 선택된 월: 06 (regular 시즌)
+2025-01-31 23:10:41,759 - crawl_kbo_schedule - INFO - 2018년 6월 regular 시즌 테이블 로드 완료
+2025-01-31 23:10:46,581 - crawl_kbo_schedule - INFO - 2018-06-01 ~ 2018-06-30 regular 시즌 데이터 크롤링 완료
+2025-01-31 23:10:46,767 - crawl_kbo_schedule - INFO - 2018년 06월 regular 시즌 데이터를 MongoDB에 저장했습니다.
+2025-01-31 23:10:46,767 - crawl_kbo_schedule - INFO - === Regular 시즌, 2018년 10월 데이터 삭제 및 업데이트 시작 ===
+2025-01-31 23:10:46,777 - crawl_kbo_schedule - INFO - 2018년 10월 regular 시즌의 0개 데이터를 삭제했습니다.
+2025-01-31 23:10:46,777 - crawl_kbo_schedule - INFO - 크롤링 기간: 2018-10-01 ~ 2018-10-31
+2025-01-31 23:10:46,778 - crawl_kbo_schedule - INFO - 2018-10-01 ~ 2018-10-31 regular 시즌 데이터 크롤링 시작
+2025-01-31 23:10:46,778 - crawl_kbo_schedule - INFO - 접속 중: https://www.koreabaseball.com/Schedule/Schedule.aspx?seriesId=0,9,6
+2025-01-31 23:10:48,422 - crawl_kbo_schedule - INFO - 선택된 연도: 2018, 선택된 월: 10 (regular 시즌)
+2025-01-31 23:10:48,435 - crawl_kbo_schedule - INFO - 2018년 10월 regular 시즌 테이블 로드 완료
+2025-01-31 23:10:49,894 - crawl_kbo_schedule - INFO - 2018-10-01 ~ 2018-10-31 regular 시즌 데이터 크롤링 완료
+2025-01-31 23:10:49,917 - crawl_kbo_schedule - INFO - 2018년 10월 regular 시즌 데이터를 MongoDB에 저장했습니다.
+2025-01-31 23:10:49,917 - crawl_kbo_schedule - INFO - === Regular 시즌, 2019년 1월 데이터 삭제 및 업데이트 시작 ===
+2025-01-31 23:10:49,930 - crawl_kbo_schedule - INFO - 2019년 01월 regular 시즌의 0개 데이터를 삭제했습니다.
+2025-01-31 23:10:49,930 - crawl_kbo_schedule - INFO - 크롤링 기간: 2019-01-01 ~ 2019-01-31
+2025-01-31 23:10:49,931 - crawl_kbo_schedule - INFO - 2019-01-01 ~ 2019-01-31 regular 시즌 데이터 크롤링 시작
+2025-01-31 23:10:49,931 - crawl_kbo_schedule - INFO - 접속 중: https://www.koreabaseball.com/Schedule/Schedule.aspx?seriesId=0,9,6
+2025-01-31 23:10:51,461 - crawl_kbo_schedule - INFO - 선택된 연도: 2019, 선택된 월: 01 (regular 시즌)
+2025-01-31 23:10:51,471 - crawl_kbo_schedule - INFO - 2019년 1월 regular 시즌 테이블 로드 완료
+2025-01-31 23:10:51,498 - crawl_kbo_schedule - WARNING - 예상치 못한 데이터 형식: ['데이터가 없습니다.']
+2025-01-31 23:10:51,544 - crawl_kbo_schedule - INFO - 2019-01-01 ~ 2019-01-31 regular 시즌 데이터 크롤링 완료
+2025-01-31 23:10:51,544 - crawl_kbo_schedule - WARNING - 2019년 01월 regular 시즌에 저장할 데이터가 없습니다.
+2025-01-31 23:10:51,545 - crawl_kbo_schedule - INFO - === Regular 시즌, 2019년 3월 데이터 삭제 및 업데이트 시작 ===
+2025-01-31 23:10:51,568 - crawl_kbo_schedule - INFO - 2019년 03월 regular 시즌의 40개 데이터를 삭제했습니다.
+2025-01-31 23:10:51,568 - crawl_kbo_schedule - INFO - 크롤링 기간: 2019-03-01 ~ 2019-03-31
+2025-01-31 23:10:51,569 - crawl_kbo_schedule - INFO - 2019-03-01 ~ 2019-03-31 regular 시즌 데이터 크롤링 시작
+2025-01-31 23:10:51,569 - crawl_kbo_schedule - INFO - 접속 중: https://www.koreabaseball.com/Schedule/Schedule.aspx?seriesId=0,9,6
+2025-01-31 23:10:53,299 - crawl_kbo_schedule - INFO - 선택된 연도: 2019, 선택된 월: 03 (regular 시즌)
+2025-01-31 23:10:53,311 - crawl_kbo_schedule - INFO - 2019년 3월 regular 시즌 테이블 로드 완료
+2025-01-31 23:10:54,879 - crawl_kbo_schedule - INFO - 2019-03-01 ~ 2019-03-31 regular 시즌 데이터 크롤링 완료
+2025-01-31 23:10:54,910 - crawl_kbo_schedule - INFO - 2019년 03월 regular 시즌 데이터를 MongoDB에 저장했습니다.
+2025-01-31 23:10:54,910 - crawl_kbo_schedule - INFO - === Regular 시즌, 2019년 5월 데이터 삭제 및 업데이트 시작 ===
+2025-01-31 23:10:54,931 - crawl_kbo_schedule - INFO - 2019년 05월 regular 시즌의 135개 데이터를 삭제했습니다.
+2025-01-31 23:10:54,932 - crawl_kbo_schedule - INFO - 크롤링 기간: 2019-05-01 ~ 2019-05-31
+2025-01-31 23:10:54,932 - crawl_kbo_schedule - INFO - 2019-05-01 ~ 2019-05-31 regular 시즌 데이터 크롤링 시작
+2025-01-31 23:10:54,932 - crawl_kbo_schedule - INFO - 접속 중: https://www.koreabaseball.com/Schedule/Schedule.aspx?seriesId=0,9,6
+2025-01-31 23:10:56,860 - crawl_kbo_schedule - INFO - 선택된 연도: 2019, 선택된 월: 05 (regular 시즌)
+2025-01-31 23:10:56,897 - crawl_kbo_schedule - INFO - 2019년 5월 regular 시즌 테이블 로드 완료
+2025-01-31 23:11:01,950 - crawl_kbo_schedule - INFO - 2019-05-01 ~ 2019-05-31 regular 시즌 데이터 크롤링 완료
+2025-01-31 23:11:02,976 - crawl_kbo_schedule - INFO - 2019년 05월 regular 시즌 데이터를 MongoDB에 저장했습니다.
+2025-01-31 23:11:02,977 - crawl_kbo_schedule - INFO - === Regular 시즌, 2019년 6월 데이터 삭제 및 업데이트 시작 ===
+2025-01-31 23:11:02,994 - crawl_kbo_schedule - INFO - 2019년 06월 regular 시즌의 130개 데이터를 삭제했습니다.
+2025-01-31 23:11:02,994 - crawl_kbo_schedule - INFO - 크롤링 기간: 2019-06-01 ~ 2019-06-30
+2025-01-31 23:11:02,995 - crawl_kbo_schedule - INFO - 2019-06-01 ~ 2019-06-30 regular 시즌 데이터 크롤링 시작
+2025-01-31 23:11:02,995 - crawl_kbo_schedule - INFO - 접속 중: https://www.koreabaseball.com/Schedule/Schedule.aspx?seriesId=0,9,6
+2025-01-31 23:11:04,843 - crawl_kbo_schedule - INFO - 선택된 연도: 2019, 선택된 월: 06 (regular 시즌)
+2025-01-31 23:11:04,879 - crawl_kbo_schedule - INFO - 2019년 6월 regular 시즌 테이블 로드 완료
+2025-01-31 23:11:09,726 - crawl_kbo_schedule - INFO - 2019-06-01 ~ 2019-06-30 regular 시즌 데이터 크롤링 완료
+2025-01-31 23:11:10,759 - crawl_kbo_schedule - INFO - 2019년 06월 regular 시즌 데이터를 MongoDB에 저장했습니다.
+2025-01-31 23:11:10,759 - crawl_kbo_schedule - INFO - === Regular 시즌, 2019년 10월 데이터 삭제 및 업데이트 시작 ===
+2025-01-31 23:11:10,769 - crawl_kbo_schedule - INFO - 2019년 10월 regular 시즌의 0개 데이터를 삭제했습니다.
+2025-01-31 23:11:10,769 - crawl_kbo_schedule - INFO - 크롤링 기간: 2019-10-01 ~ 2019-10-31
+2025-01-31 23:11:10,769 - crawl_kbo_schedule - INFO - 2019-10-01 ~ 2019-10-31 regular 시즌 데이터 크롤링 시작
+2025-01-31 23:11:10,769 - crawl_kbo_schedule - INFO - 접속 중: https://www.koreabaseball.com/Schedule/Schedule.aspx?seriesId=0,9,6
+2025-01-31 23:11:12,431 - crawl_kbo_schedule - INFO - 선택된 연도: 2019, 선택된 월: 10 (regular 시즌)
+2025-01-31 23:11:12,442 - crawl_kbo_schedule - INFO - 2019년 10월 regular 시즌 테이블 로드 완료
+2025-01-31 23:11:12,589 - crawl_kbo_schedule - INFO - 2019-10-01 ~ 2019-10-31 regular 시즌 데이터 크롤링 완료
+2025-01-31 23:11:12,604 - crawl_kbo_schedule - INFO - 2019년 10월 regular 시즌 데이터를 MongoDB에 저장했습니다.
+2025-01-31 23:11:12,605 - crawl_kbo_schedule - INFO - === Postseason 시즌, 2018년 1월 데이터 삭제 및 업데이트 시작 ===
+2025-01-31 23:11:12,615 - crawl_kbo_schedule - INFO - 2018년 01월 postseason 시즌의 0개 데이터를 삭제했습니다.
+2025-01-31 23:11:12,615 - crawl_kbo_schedule - INFO - 크롤링 기간: 2018-01-01 ~ 2018-01-31
+2025-01-31 23:11:12,616 - crawl_kbo_schedule - INFO - 2018-01-01 ~ 2018-01-31 postseason 시즌 데이터 크롤링 시작
+2025-01-31 23:11:12,616 - crawl_kbo_schedule - INFO - 접속 중: https://www.koreabaseball.com/Schedule/Schedule.aspx?seriesId=3,4,5,7
+2025-01-31 23:11:14,031 - crawl_kbo_schedule - INFO - 선택된 연도: 2018, 선택된 월: 01 (postseason 시즌)
+2025-01-31 23:11:14,040 - crawl_kbo_schedule - INFO - 2018년 1월 postseason 시즌 테이블 로드 완료
+2025-01-31 23:11:14,067 - crawl_kbo_schedule - WARNING - 예상치 못한 데이터 형식: ['데이터가 없습니다.']
+2025-01-31 23:11:14,114 - crawl_kbo_schedule - INFO - 2018-01-01 ~ 2018-01-31 postseason 시즌 데이터 크롤링 완료
+2025-01-31 23:11:14,114 - crawl_kbo_schedule - WARNING - 2018년 01월 postseason 시즌에 저장할 데이터가 없습니다.
+2025-01-31 23:11:14,114 - crawl_kbo_schedule - INFO - === Postseason 시즌, 2018년 3월 데이터 삭제 및 업데이트 시작 ===
+2025-01-31 23:11:14,124 - crawl_kbo_schedule - INFO - 2018년 03월 postseason 시즌의 0개 데이터를 삭제했습니다.
+2025-01-31 23:11:14,125 - crawl_kbo_schedule - INFO - 크롤링 기간: 2018-03-01 ~ 2018-03-31
+2025-01-31 23:11:14,125 - crawl_kbo_schedule - INFO - 2018-03-01 ~ 2018-03-31 postseason 시즌 데이터 크롤링 시작
+2025-01-31 23:11:14,125 - crawl_kbo_schedule - INFO - 접속 중: https://www.koreabaseball.com/Schedule/Schedule.aspx?seriesId=3,4,5,7
+2025-01-31 23:11:15,565 - crawl_kbo_schedule - INFO - 선택된 연도: 2018, 선택된 월: 03 (postseason 시즌)
+2025-01-31 23:11:15,575 - crawl_kbo_schedule - INFO - 2018년 3월 postseason 시즌 테이블 로드 완료
+2025-01-31 23:11:15,601 - crawl_kbo_schedule - WARNING - 예상치 못한 데이터 형식: ['데이터가 없습니다.']
+2025-01-31 23:11:15,647 - crawl_kbo_schedule - INFO - 2018-03-01 ~ 2018-03-31 postseason 시즌 데이터 크롤링 완료
+2025-01-31 23:11:15,647 - crawl_kbo_schedule - WARNING - 2018년 03월 postseason 시즌에 저장할 데이터가 없습니다.
+2025-01-31 23:11:15,647 - crawl_kbo_schedule - INFO - === Postseason 시즌, 2018년 5월 데이터 삭제 및 업데이트 시작 ===
+2025-01-31 23:11:15,657 - crawl_kbo_schedule - INFO - 2018년 05월 postseason 시즌의 0개 데이터를 삭제했습니다.
+2025-01-31 23:11:15,657 - crawl_kbo_schedule - INFO - 크롤링 기간: 2018-05-01 ~ 2018-05-31
+2025-01-31 23:11:15,658 - crawl_kbo_schedule - INFO - 2018-05-01 ~ 2018-05-31 postseason 시즌 데이터 크롤링 시작
+2025-01-31 23:11:15,658 - crawl_kbo_schedule - INFO - 접속 중: https://www.koreabaseball.com/Schedule/Schedule.aspx?seriesId=3,4,5,7
+2025-01-31 23:11:17,052 - crawl_kbo_schedule - INFO - 선택된 연도: 2018, 선택된 월: 05 (postseason 시즌)
+2025-01-31 23:11:17,062 - crawl_kbo_schedule - INFO - 2018년 5월 postseason 시즌 테이블 로드 완료
+2025-01-31 23:11:17,089 - crawl_kbo_schedule - WARNING - 예상치 못한 데이터 형식: ['데이터가 없습니다.']
+2025-01-31 23:11:17,142 - crawl_kbo_schedule - INFO - 2018-05-01 ~ 2018-05-31 postseason 시즌 데이터 크롤링 완료
+2025-01-31 23:11:17,142 - crawl_kbo_schedule - WARNING - 2018년 05월 postseason 시즌에 저장할 데이터가 없습니다.
+2025-01-31 23:11:17,142 - crawl_kbo_schedule - INFO - === Postseason 시즌, 2018년 6월 데이터 삭제 및 업데이트 시작 ===
+2025-01-31 23:11:17,152 - crawl_kbo_schedule - INFO - 2018년 06월 postseason 시즌의 0개 데이터를 삭제했습니다.
+2025-01-31 23:11:17,152 - crawl_kbo_schedule - INFO - 크롤링 기간: 2018-06-01 ~ 2018-06-30
+2025-01-31 23:11:17,154 - crawl_kbo_schedule - INFO - 2018-06-01 ~ 2018-06-30 postseason 시즌 데이터 크롤링 시작
+2025-01-31 23:11:17,154 - crawl_kbo_schedule - INFO - 접속 중: https://www.koreabaseball.com/Schedule/Schedule.aspx?seriesId=3,4,5,7
+2025-01-31 23:11:18,513 - crawl_kbo_schedule - INFO - 선택된 연도: 2018, 선택된 월: 06 (postseason 시즌)
+2025-01-31 23:11:18,523 - crawl_kbo_schedule - INFO - 2018년 6월 postseason 시즌 테이블 로드 완료
+2025-01-31 23:11:18,550 - crawl_kbo_schedule - WARNING - 예상치 못한 데이터 형식: ['데이터가 없습니다.']
+2025-01-31 23:11:18,598 - crawl_kbo_schedule - INFO - 2018-06-01 ~ 2018-06-30 postseason 시즌 데이터 크롤링 완료
+2025-01-31 23:11:18,599 - crawl_kbo_schedule - WARNING - 2018년 06월 postseason 시즌에 저장할 데이터가 없습니다.
+2025-01-31 23:11:18,599 - crawl_kbo_schedule - INFO - === Postseason 시즌, 2018년 10월 데이터 삭제 및 업데이트 시작 ===
+2025-01-31 23:11:18,616 - crawl_kbo_schedule - INFO - 2018년 10월 postseason 시즌의 9개 데이터를 삭제했습니다.
+2025-01-31 23:11:18,616 - crawl_kbo_schedule - INFO - 크롤링 기간: 2018-10-01 ~ 2018-10-31
+2025-01-31 23:11:18,617 - crawl_kbo_schedule - INFO - 2018-10-01 ~ 2018-10-31 postseason 시즌 데이터 크롤링 시작
+2025-01-31 23:11:18,617 - crawl_kbo_schedule - INFO - 접속 중: https://www.koreabaseball.com/Schedule/Schedule.aspx?seriesId=3,4,5,7
+2025-01-31 23:11:20,096 - crawl_kbo_schedule - INFO - 선택된 연도: 2018, 선택된 월: 10 (postseason 시즌)
+2025-01-31 23:11:20,106 - crawl_kbo_schedule - INFO - 2018년 10월 postseason 시즌 테이블 로드 완료
+2025-01-31 23:11:20,715 - crawl_kbo_schedule - INFO - 2018-10-01 ~ 2018-10-31 postseason 시즌 데이터 크롤링 완료
+2025-01-31 23:11:20,730 - crawl_kbo_schedule - INFO - 2018년 10월 postseason 시즌 데이터를 MongoDB에 저장했습니다.
+2025-01-31 23:11:20,730 - crawl_kbo_schedule - INFO - === Postseason 시즌, 2019년 1월 데이터 삭제 및 업데이트 시작 ===
+2025-01-31 23:11:20,739 - crawl_kbo_schedule - INFO - 2019년 01월 postseason 시즌의 0개 데이터를 삭제했습니다.
+2025-01-31 23:11:20,739 - crawl_kbo_schedule - INFO - 크롤링 기간: 2019-01-01 ~ 2019-01-31
+2025-01-31 23:11:20,740 - crawl_kbo_schedule - INFO - 2019-01-01 ~ 2019-01-31 postseason 시즌 데이터 크롤링 시작
+2025-01-31 23:11:20,740 - crawl_kbo_schedule - INFO - 접속 중: https://www.koreabaseball.com/Schedule/Schedule.aspx?seriesId=3,4,5,7
+2025-01-31 23:11:22,339 - crawl_kbo_schedule - INFO - 선택된 연도: 2019, 선택된 월: 01 (postseason 시즌)
+2025-01-31 23:11:22,349 - crawl_kbo_schedule - INFO - 2019년 1월 postseason 시즌 테이블 로드 완료
+2025-01-31 23:11:22,376 - crawl_kbo_schedule - WARNING - 예상치 못한 데이터 형식: ['데이터가 없습니다.']
+2025-01-31 23:11:22,427 - crawl_kbo_schedule - INFO - 2019-01-01 ~ 2019-01-31 postseason 시즌 데이터 크롤링 완료
+2025-01-31 23:11:22,428 - crawl_kbo_schedule - WARNING - 2019년 01월 postseason 시즌에 저장할 데이터가 없습니다.
+2025-01-31 23:11:22,428 - crawl_kbo_schedule - INFO - === Postseason 시즌, 2019년 3월 데이터 삭제 및 업데이트 시작 ===
+2025-01-31 23:11:22,437 - crawl_kbo_schedule - INFO - 2019년 03월 postseason 시즌의 0개 데이터를 삭제했습니다.
+2025-01-31 23:11:22,438 - crawl_kbo_schedule - INFO - 크롤링 기간: 2019-03-01 ~ 2019-03-31
+2025-01-31 23:11:22,438 - crawl_kbo_schedule - INFO - 2019-03-01 ~ 2019-03-31 postseason 시즌 데이터 크롤링 시작
+2025-01-31 23:11:22,438 - crawl_kbo_schedule - INFO - 접속 중: https://www.koreabaseball.com/Schedule/Schedule.aspx?seriesId=3,4,5,7
+2025-01-31 23:11:23,868 - crawl_kbo_schedule - INFO - 선택된 연도: 2019, 선택된 월: 03 (postseason 시즌)
+2025-01-31 23:11:23,878 - crawl_kbo_schedule - INFO - 2019년 3월 postseason 시즌 테이블 로드 완료
+2025-01-31 23:11:23,905 - crawl_kbo_schedule - WARNING - 예상치 못한 데이터 형식: ['데이터가 없습니다.']
+2025-01-31 23:11:23,956 - crawl_kbo_schedule - INFO - 2019-03-01 ~ 2019-03-31 postseason 시즌 데이터 크롤링 완료
+2025-01-31 23:11:23,956 - crawl_kbo_schedule - WARNING - 2019년 03월 postseason 시즌에 저장할 데이터가 없습니다.
+2025-01-31 23:11:23,956 - crawl_kbo_schedule - INFO - === Postseason 시즌, 2019년 5월 데이터 삭제 및 업데이트 시작 ===
+2025-01-31 23:11:23,967 - crawl_kbo_schedule - INFO - 2019년 05월 postseason 시즌의 0개 데이터를 삭제했습니다.
+2025-01-31 23:11:23,968 - crawl_kbo_schedule - INFO - 크롤링 기간: 2019-05-01 ~ 2019-05-31
+2025-01-31 23:11:23,968 - crawl_kbo_schedule - INFO - 2019-05-01 ~ 2019-05-31 postseason 시즌 데이터 크롤링 시작
+2025-01-31 23:11:23,968 - crawl_kbo_schedule - INFO - 접속 중: https://www.koreabaseball.com/Schedule/Schedule.aspx?seriesId=3,4,5,7
+2025-01-31 23:11:25,351 - crawl_kbo_schedule - INFO - 선택된 연도: 2019, 선택된 월: 05 (postseason 시즌)
+2025-01-31 23:11:25,360 - crawl_kbo_schedule - INFO - 2019년 5월 postseason 시즌 테이블 로드 완료
+2025-01-31 23:11:25,387 - crawl_kbo_schedule - WARNING - 예상치 못한 데이터 형식: ['데이터가 없습니다.']
+2025-01-31 23:11:25,436 - crawl_kbo_schedule - INFO - 2019-05-01 ~ 2019-05-31 postseason 시즌 데이터 크롤링 완료
+2025-01-31 23:11:25,436 - crawl_kbo_schedule - WARNING - 2019년 05월 postseason 시즌에 저장할 데이터가 없습니다.
+2025-01-31 23:11:25,436 - crawl_kbo_schedule - INFO - === Postseason 시즌, 2019년 6월 데이터 삭제 및 업데이트 시작 ===
+2025-01-31 23:11:25,446 - crawl_kbo_schedule - INFO - 2019년 06월 postseason 시즌의 0개 데이터를 삭제했습니다.
+2025-01-31 23:11:25,446 - crawl_kbo_schedule - INFO - 크롤링 기간: 2019-06-01 ~ 2019-06-30
+2025-01-31 23:11:25,448 - crawl_kbo_schedule - INFO - 2019-06-01 ~ 2019-06-30 postseason 시즌 데이터 크롤링 시작
+2025-01-31 23:11:25,448 - crawl_kbo_schedule - INFO - 접속 중: https://www.koreabaseball.com/Schedule/Schedule.aspx?seriesId=3,4,5,7
+2025-01-31 23:11:27,061 - crawl_kbo_schedule - INFO - 선택된 연도: 2019, 선택된 월: 06 (postseason 시즌)
+2025-01-31 23:11:27,072 - crawl_kbo_schedule - INFO - 2019년 6월 postseason 시즌 테이블 로드 완료
+2025-01-31 23:11:27,099 - crawl_kbo_schedule - WARNING - 예상치 못한 데이터 형식: ['데이터가 없습니다.']
+2025-01-31 23:11:27,142 - crawl_kbo_schedule - INFO - 2019-06-01 ~ 2019-06-30 postseason 시즌 데이터 크롤링 완료
+2025-01-31 23:11:27,142 - crawl_kbo_schedule - WARNING - 2019년 06월 postseason 시즌에 저장할 데이터가 없습니다.
+2025-01-31 23:11:27,142 - crawl_kbo_schedule - INFO - === Postseason 시즌, 2019년 10월 데이터 삭제 및 업데이트 시작 ===
+2025-01-31 23:11:27,163 - crawl_kbo_schedule - INFO - 2019년 10월 postseason 시즌의 12개 데이터를 삭제했습니다.
+2025-01-31 23:11:27,163 - crawl_kbo_schedule - INFO - 크롤링 기간: 2019-10-01 ~ 2019-10-31
+2025-01-31 23:11:27,163 - crawl_kbo_schedule - INFO - 2019-10-01 ~ 2019-10-31 postseason 시즌 데이터 크롤링 시작
+2025-01-31 23:11:27,164 - crawl_kbo_schedule - INFO - 접속 중: https://www.koreabaseball.com/Schedule/Schedule.aspx?seriesId=3,4,5,7
+2025-01-31 23:11:28,648 - crawl_kbo_schedule - INFO - 선택된 연도: 2019, 선택된 월: 10 (postseason 시즌)
+2025-01-31 23:11:28,659 - crawl_kbo_schedule - INFO - 2019년 10월 postseason 시즌 테이블 로드 완료
+2025-01-31 23:11:29,471 - crawl_kbo_schedule - INFO - 2019-10-01 ~ 2019-10-31 postseason 시즌 데이터 크롤링 완료
+2025-01-31 23:11:29,486 - crawl_kbo_schedule - INFO - 2019년 10월 postseason 시즌 데이터를 MongoDB에 저장했습니다.
+2025-01-31 23:11:29,486 - crawl_kbo_schedule - INFO - === Trial 시즌, 2018년 1월 데이터 삭제 및 업데이트 시작 ===
+2025-01-31 23:11:29,496 - crawl_kbo_schedule - INFO - 2018년 01월 trial 시즌의 0개 데이터를 삭제했습니다.
+2025-01-31 23:11:29,496 - crawl_kbo_schedule - INFO - 크롤링 기간: 2018-01-01 ~ 2018-01-31
+2025-01-31 23:11:29,496 - crawl_kbo_schedule - INFO - 2018-01-01 ~ 2018-01-31 trial 시즌 데이터 크롤링 시작
+2025-01-31 23:11:29,497 - crawl_kbo_schedule - INFO - 접속 중: https://www.koreabaseball.com/Schedule/Schedule.aspx?seriesId=1
+2025-01-31 23:11:31,156 - crawl_kbo_schedule - INFO - 선택된 연도: 2018, 선택된 월: 01 (trial 시즌)
+2025-01-31 23:11:31,166 - crawl_kbo_schedule - INFO - 2018년 1월 trial 시즌 테이블 로드 완료
+2025-01-31 23:11:31,192 - crawl_kbo_schedule - WARNING - 예상치 못한 데이터 형식: ['데이터가 없습니다.']
+2025-01-31 23:11:31,237 - crawl_kbo_schedule - INFO - 2018-01-01 ~ 2018-01-31 trial 시즌 데이터 크롤링 완료
+2025-01-31 23:11:31,237 - crawl_kbo_schedule - WARNING - 2018년 01월 trial 시즌에 저장할 데이터가 없습니다.
+2025-01-31 23:11:31,237 - crawl_kbo_schedule - INFO - === Trial 시즌, 2018년 3월 데이터 삭제 및 업데이트 시작 ===
+2025-01-31 23:11:31,248 - crawl_kbo_schedule - INFO - 2018년 03월 trial 시즌의 0개 데이터를 삭제했습니다.
+2025-01-31 23:11:31,248 - crawl_kbo_schedule - INFO - 크롤링 기간: 2018-03-01 ~ 2018-03-31
+2025-01-31 23:11:31,248 - crawl_kbo_schedule - INFO - 2018-03-01 ~ 2018-03-31 trial 시즌 데이터 크롤링 시작
+2025-01-31 23:11:31,248 - crawl_kbo_schedule - INFO - 접속 중: https://www.koreabaseball.com/Schedule/Schedule.aspx?seriesId=1
+2025-01-31 23:11:33,073 - crawl_kbo_schedule - INFO - 선택된 연도: 2018, 선택된 월: 03 (trial 시즌)
+2025-01-31 23:11:33,088 - crawl_kbo_schedule - INFO - 2018년 3월 trial 시즌 테이블 로드 완료
+2025-01-31 23:11:34,701 - crawl_kbo_schedule - INFO - 2018-03-01 ~ 2018-03-31 trial 시즌 데이터 크롤링 완료
+2025-01-31 23:11:34,718 - crawl_kbo_schedule - INFO - 2018년 03월 trial 시즌 데이터를 MongoDB에 저장했습니다.
+2025-01-31 23:11:34,718 - crawl_kbo_schedule - INFO - === Trial 시즌, 2018년 5월 데이터 삭제 및 업데이트 시작 ===
+2025-01-31 23:11:34,728 - crawl_kbo_schedule - INFO - 2018년 05월 trial 시즌의 0개 데이터를 삭제했습니다.
+2025-01-31 23:11:34,729 - crawl_kbo_schedule - INFO - 크롤링 기간: 2018-05-01 ~ 2018-05-31
+2025-01-31 23:11:34,729 - crawl_kbo_schedule - INFO - 2018-05-01 ~ 2018-05-31 trial 시즌 데이터 크롤링 시작
+2025-01-31 23:11:34,729 - crawl_kbo_schedule - INFO - 접속 중: https://www.koreabaseball.com/Schedule/Schedule.aspx?seriesId=1
+2025-01-31 23:11:36,357 - crawl_kbo_schedule - INFO - 선택된 연도: 2018, 선택된 월: 05 (trial 시즌)
+2025-01-31 23:11:36,366 - crawl_kbo_schedule - INFO - 2018년 5월 trial 시즌 테이블 로드 완료
+2025-01-31 23:11:36,392 - crawl_kbo_schedule - WARNING - 예상치 못한 데이터 형식: ['데이터가 없습니다.']
+2025-01-31 23:11:36,449 - crawl_kbo_schedule - INFO - 2018-05-01 ~ 2018-05-31 trial 시즌 데이터 크롤링 완료
+2025-01-31 23:11:36,449 - crawl_kbo_schedule - WARNING - 2018년 05월 trial 시즌에 저장할 데이터가 없습니다.
+2025-01-31 23:11:36,449 - crawl_kbo_schedule - INFO - === Trial 시즌, 2018년 6월 데이터 삭제 및 업데이트 시작 ===
+2025-01-31 23:11:36,459 - crawl_kbo_schedule - INFO - 2018년 06월 trial 시즌의 0개 데이터를 삭제했습니다.
+2025-01-31 23:11:36,459 - crawl_kbo_schedule - INFO - 크롤링 기간: 2018-06-01 ~ 2018-06-30
+2025-01-31 23:11:36,459 - crawl_kbo_schedule - INFO - 2018-06-01 ~ 2018-06-30 trial 시즌 데이터 크롤링 시작
+2025-01-31 23:11:36,459 - crawl_kbo_schedule - INFO - 접속 중: https://www.koreabaseball.com/Schedule/Schedule.aspx?seriesId=1
+2025-01-31 23:11:38,291 - crawl_kbo_schedule - INFO - 선택된 연도: 2018, 선택된 월: 06 (trial 시즌)
+2025-01-31 23:11:38,300 - crawl_kbo_schedule - INFO - 2018년 6월 trial 시즌 테이블 로드 완료
+2025-01-31 23:11:38,327 - crawl_kbo_schedule - WARNING - 예상치 못한 데이터 형식: ['데이터가 없습니다.']
+2025-01-31 23:11:38,370 - crawl_kbo_schedule - INFO - 2018-06-01 ~ 2018-06-30 trial 시즌 데이터 크롤링 완료
+2025-01-31 23:11:38,370 - crawl_kbo_schedule - WARNING - 2018년 06월 trial 시즌에 저장할 데이터가 없습니다.
+2025-01-31 23:11:38,371 - crawl_kbo_schedule - INFO - === Trial 시즌, 2018년 10월 데이터 삭제 및 업데이트 시작 ===
+2025-01-31 23:11:38,384 - crawl_kbo_schedule - INFO - 2018년 10월 trial 시즌의 0개 데이터를 삭제했습니다.
+2025-01-31 23:11:38,384 - crawl_kbo_schedule - INFO - 크롤링 기간: 2018-10-01 ~ 2018-10-31
+2025-01-31 23:11:38,384 - crawl_kbo_schedule - INFO - 2018-10-01 ~ 2018-10-31 trial 시즌 데이터 크롤링 시작
+2025-01-31 23:11:38,385 - crawl_kbo_schedule - INFO - 접속 중: https://www.koreabaseball.com/Schedule/Schedule.aspx?seriesId=1
+2025-01-31 23:11:39,975 - crawl_kbo_schedule - INFO - 선택된 연도: 2018, 선택된 월: 10 (trial 시즌)
+2025-01-31 23:11:39,984 - crawl_kbo_schedule - INFO - 2018년 10월 trial 시즌 테이블 로드 완료
+2025-01-31 23:11:40,011 - crawl_kbo_schedule - WARNING - 예상치 못한 데이터 형식: ['데이터가 없습니다.']
+2025-01-31 23:11:40,054 - crawl_kbo_schedule - INFO - 2018-10-01 ~ 2018-10-31 trial 시즌 데이터 크롤링 완료
+2025-01-31 23:11:40,054 - crawl_kbo_schedule - WARNING - 2018년 10월 trial 시즌에 저장할 데이터가 없습니다.
+2025-01-31 23:11:40,055 - crawl_kbo_schedule - INFO - === Trial 시즌, 2019년 1월 데이터 삭제 및 업데이트 시작 ===
+2025-01-31 23:11:40,064 - crawl_kbo_schedule - INFO - 2019년 01월 trial 시즌의 0개 데이터를 삭제했습니다.
+2025-01-31 23:11:40,064 - crawl_kbo_schedule - INFO - 크롤링 기간: 2019-01-01 ~ 2019-01-31
+2025-01-31 23:11:40,065 - crawl_kbo_schedule - INFO - 2019-01-01 ~ 2019-01-31 trial 시즌 데이터 크롤링 시작
+2025-01-31 23:11:40,065 - crawl_kbo_schedule - INFO - 접속 중: https://www.koreabaseball.com/Schedule/Schedule.aspx?seriesId=1
+2025-01-31 23:11:41,758 - crawl_kbo_schedule - INFO - 선택된 연도: 2019, 선택된 월: 01 (trial 시즌)
+2025-01-31 23:11:41,768 - crawl_kbo_schedule - INFO - 2019년 1월 trial 시즌 테이블 로드 완료
+2025-01-31 23:11:41,795 - crawl_kbo_schedule - WARNING - 예상치 못한 데이터 형식: ['데이터가 없습니다.']
+2025-01-31 23:11:41,848 - crawl_kbo_schedule - INFO - 2019-01-01 ~ 2019-01-31 trial 시즌 데이터 크롤링 완료
+2025-01-31 23:11:41,849 - crawl_kbo_schedule - WARNING - 2019년 01월 trial 시즌에 저장할 데이터가 없습니다.
+2025-01-31 23:11:41,849 - crawl_kbo_schedule - INFO - === Trial 시즌, 2019년 3월 데이터 삭제 및 업데이트 시작 ===
+2025-01-31 23:11:41,862 - crawl_kbo_schedule - INFO - 2019년 03월 trial 시즌의 0개 데이터를 삭제했습니다.
+2025-01-31 23:11:41,862 - crawl_kbo_schedule - INFO - 크롤링 기간: 2019-03-01 ~ 2019-03-31
+2025-01-31 23:11:41,862 - crawl_kbo_schedule - INFO - 2019-03-01 ~ 2019-03-31 trial 시즌 데이터 크롤링 시작
+2025-01-31 23:11:41,864 - crawl_kbo_schedule - INFO - 접속 중: https://www.koreabaseball.com/Schedule/Schedule.aspx?seriesId=1
+2025-01-31 23:11:43,719 - crawl_kbo_schedule - INFO - 선택된 연도: 2019, 선택된 월: 03 (trial 시즌)
+2025-01-31 23:11:43,734 - crawl_kbo_schedule - INFO - 2019년 3월 trial 시즌 테이블 로드 완료
+2025-01-31 23:11:45,312 - crawl_kbo_schedule - INFO - 2019-03-01 ~ 2019-03-31 trial 시즌 데이터 크롤링 완료
+2025-01-31 23:11:45,330 - crawl_kbo_schedule - INFO - 2019년 03월 trial 시즌 데이터를 MongoDB에 저장했습니다.
+2025-01-31 23:11:45,331 - crawl_kbo_schedule - INFO - === Trial 시즌, 2019년 5월 데이터 삭제 및 업데이트 시작 ===
+2025-01-31 23:11:45,340 - crawl_kbo_schedule - INFO - 2019년 05월 trial 시즌의 0개 데이터를 삭제했습니다.
+2025-01-31 23:11:45,341 - crawl_kbo_schedule - INFO - 크롤링 기간: 2019-05-01 ~ 2019-05-31
+2025-01-31 23:11:45,341 - crawl_kbo_schedule - INFO - 2019-05-01 ~ 2019-05-31 trial 시즌 데이터 크롤링 시작
+2025-01-31 23:11:45,341 - crawl_kbo_schedule - INFO - 접속 중: https://www.koreabaseball.com/Schedule/Schedule.aspx?seriesId=1
+2025-01-31 23:11:46,984 - crawl_kbo_schedule - INFO - 선택된 연도: 2019, 선택된 월: 05 (trial 시즌)
+2025-01-31 23:11:46,996 - crawl_kbo_schedule - INFO - 2019년 5월 trial 시즌 테이블 로드 완료
+2025-01-31 23:11:47,022 - crawl_kbo_schedule - WARNING - 예상치 못한 데이터 형식: ['데이터가 없습니다.']
+2025-01-31 23:11:47,068 - crawl_kbo_schedule - INFO - 2019-05-01 ~ 2019-05-31 trial 시즌 데이터 크롤링 완료
+2025-01-31 23:11:47,068 - crawl_kbo_schedule - WARNING - 2019년 05월 trial 시즌에 저장할 데이터가 없습니다.
+2025-01-31 23:11:47,068 - crawl_kbo_schedule - INFO - === Trial 시즌, 2019년 6월 데이터 삭제 및 업데이트 시작 ===
+2025-01-31 23:11:47,078 - crawl_kbo_schedule - INFO - 2019년 06월 trial 시즌의 0개 데이터를 삭제했습니다.
+2025-01-31 23:11:47,079 - crawl_kbo_schedule - INFO - 크롤링 기간: 2019-06-01 ~ 2019-06-30
+2025-01-31 23:11:47,079 - crawl_kbo_schedule - INFO - 2019-06-01 ~ 2019-06-30 trial 시즌 데이터 크롤링 시작
+2025-01-31 23:11:47,079 - crawl_kbo_schedule - INFO - 접속 중: https://www.koreabaseball.com/Schedule/Schedule.aspx?seriesId=1
+2025-01-31 23:11:48,802 - crawl_kbo_schedule - INFO - 선택된 연도: 2019, 선택된 월: 06 (trial 시즌)
+2025-01-31 23:11:48,812 - crawl_kbo_schedule - INFO - 2019년 6월 trial 시즌 테이블 로드 완료
+2025-01-31 23:11:48,838 - crawl_kbo_schedule - WARNING - 예상치 못한 데이터 형식: ['데이터가 없습니다.']
+2025-01-31 23:11:48,896 - crawl_kbo_schedule - INFO - 2019-06-01 ~ 2019-06-30 trial 시즌 데이터 크롤링 완료
+2025-01-31 23:11:48,896 - crawl_kbo_schedule - WARNING - 2019년 06월 trial 시즌에 저장할 데이터가 없습니다.
+2025-01-31 23:11:48,896 - crawl_kbo_schedule - INFO - === Trial 시즌, 2019년 10월 데이터 삭제 및 업데이트 시작 ===
+2025-01-31 23:11:48,906 - crawl_kbo_schedule - INFO - 2019년 10월 trial 시즌의 0개 데이터를 삭제했습니다.
+2025-01-31 23:11:48,906 - crawl_kbo_schedule - INFO - 크롤링 기간: 2019-10-01 ~ 2019-10-31
+2025-01-31 23:11:48,907 - crawl_kbo_schedule - INFO - 2019-10-01 ~ 2019-10-31 trial 시즌 데이터 크롤링 시작
+2025-01-31 23:11:48,907 - crawl_kbo_schedule - INFO - 접속 중: https://www.koreabaseball.com/Schedule/Schedule.aspx?seriesId=1
+2025-01-31 23:11:50,880 - crawl_kbo_schedule - INFO - 선택된 연도: 2019, 선택된 월: 10 (trial 시즌)
+2025-01-31 23:11:50,889 - crawl_kbo_schedule - INFO - 2019년 10월 trial 시즌 테이블 로드 완료
+2025-01-31 23:11:50,917 - crawl_kbo_schedule - WARNING - 예상치 못한 데이터 형식: ['데이터가 없습니다.']
+2025-01-31 23:11:50,974 - crawl_kbo_schedule - INFO - 2019-10-01 ~ 2019-10-31 trial 시즌 데이터 크롤링 완료
+2025-01-31 23:11:50,974 - crawl_kbo_schedule - WARNING - 2019년 10월 trial 시즌에 저장할 데이터가 없습니다.
+2025-01-31 23:11:50,974 - crawl_kbo_schedule - INFO - === 실험 데이터 삭제 및 업데이트 완료 ===
