@@ -134,3 +134,6 @@ if __name__ == "__main__":
     #update_daily_data()
     # 스케줄러 실행 (데일리 업데이트를 자동으로 수행)
     run_scheduler()
+
+#python -m app.data_upload.crawl_update_daily_data
+#set PYTHONPATH=C:프로젝트 경로
