@@ -1,5 +1,3 @@
-# app/data_upload/crawl_kbo_schedule.py
-
 from typing import List, Dict, Any
 from datetime import datetime, timedelta
 import logging
@@ -119,10 +117,13 @@ def crawl_kbo_schedule(start_date: datetime, end_date: datetime, schedule_type: 
                     else:
                         continue
 
-                    is_cancelled = '취소' in note
+                    # note에 "-" 외에 다른 문자열이 있다면 취소로 간주합니다.
+                    is_cancelled = (note.strip() != "-")
                     cancel_reason = note if is_cancelled else "-"
-                    team1_score = "-" if is_cancelled else team1_score or "-"
-                    team2_score = "-" if is_cancelled else team2_score or "-"
+                    # 취소된 경우, 점수는 "-"로 설정
+                    if is_cancelled:
+                        team1_score = "-"
+                        team2_score = "-"
 
                     result = "-"
                     if team1_score != "-" and team2_score != "-":
@@ -147,17 +148,18 @@ def crawl_kbo_schedule(start_date: datetime, end_date: datetime, schedule_type: 
                         "schedule_type": schedule_type
                     })
 
-                # 더블 헤더 순서 지정
+                # 더블 헤더 순서 지정: 팀과 날짜별로 그룹화하여 순서를 부여합니다.
                 from collections import defaultdict
 
-                team_game_times = defaultdict(list)
+                team_date_game_times = defaultdict(list)
                 for game in game_data_by_date:
-                    team_game_times[game['team1']].append(game['game_time'])
+                    key = (game['team1'], game['date'])
+                    team_date_game_times[key].append(game['game_time'])
 
                 for game in game_data_by_date:
-                    team = game['team1']
-                    if len(team_game_times[team]) > 1:
-                        sorted_times = sorted(team_game_times[team])
+                    key = (game['team1'], game['date'])
+                    if len(team_date_game_times[key]) > 1:
+                        sorted_times = sorted(team_date_game_times[key])
                         double_header_order = sorted_times.index(game['game_time'])
                         game["doubleHeaderGameOrder"] = double_header_order
                     else:
@@ -247,8 +249,8 @@ if __name__ == "__main__":
 
     # 실험을 위한 시즌, 연도, 월 리스트 설정
     experiment_seasons = ["regular", "postseason", "trial"]  # 원하는 시즌 타입 리스트
-    experiment_years = [2018, 2019]  # 원하는 연도 리스트
-    experiment_months = [1, 3, 5, 6, 10]  # 원하는 월 리스트
+    experiment_years = [2017, 2018, 2019, 2020, 2021, 2022, 2023, 2024, 2025]  # 원하는 연도 리스트
+    experiment_months = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]  # 원하는 월 리스트
 
     # 실험 함수 실행
     experimental_update(experiment_seasons, experiment_years, experiment_months, logger)
